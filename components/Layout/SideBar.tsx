@@ -70,16 +70,17 @@ export default function SideBar() {
 
 
     return (
-        <div>
+        <div className=''>
             <React.Fragment key={"left"}>
 
                 <Drawer
                     anchor={"left"}
                     open={open}
                     onClose={toggleDrawer()}
+                    className="dark:bg-black"
                     sx={{
                         width: "100%",
-                        padding: "4px",
+                        // padding: "4px",
                         transition: "0.5s ease-out",
                         '&[data-theme="dark"]': {
                             backgroundColor: "black"
@@ -89,13 +90,13 @@ export default function SideBar() {
                     }}
 
                 >
-                    <div className='flex flex-col  w-full bg-white dark:bg-black dark:text-white'>
+                    <div className='h-screen flex flex-col  w-full bg-white dark:bg-black dark:text-white'>
                         {/* heading */}
                         <div className='flex items-center gap-8 justify-between p-8'>
-                            <h2 className='capitalize leading-4 cursor-pointer text-base text-orange-500  font-semibold'>Sustainable Sips</h2>
+                            <h2 className='leading-4 cursor-pointer text-orange-500  font-semibold uppercase text-sm'>Sustainable Sips</h2>
                             <FaChevronLeft size={20} onClick={() => dispatch({
                                 type: "CLOSE"
-                            })} className="shadow-md rounded-md hover:cursor-pointer hover:scale-105" />
+                            })} className="hover:cursor-pointer hover:scale-105" />
                         </div>
                         <div className='border border-b-gray-200 w-full shadow-sm'></div>
 
