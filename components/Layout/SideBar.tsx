@@ -17,27 +17,27 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 const menu: any = [
     {
         title: "dashboard",
-        icon: <FaHome color={"orange"} />,
+        icon: <FaHome  />,
         url: "/dashboard",
     },
     {
         title: "Products",
-        icon: <FaCartPlus color={"orange"} />,
+        icon: <FaCartPlus  />,
         url: "/products",
     },
     {
         title: "Sales",
-        icon: <FaMoneyBill color={"orange"} />,
+        icon: <FaMoneyBill  />,
         url: "/sales",
     },
     {
         title: "User Management",
-        icon: <FaPersonBooth color={"orange"} />,
+        icon: <FaPersonBooth className="hover:text-orange-300" />,
         url: "/user-management",
     },
     {
         title: "Receipts",
-        icon: <FaReceipt color={"orange"} />,
+        icon: <FaReceipt  />,
         url: "/receipts",
     },
 ];
@@ -100,9 +100,9 @@ export default function SideBar() {
                     <div className='h-screen flex flex-col overflow-hidden flex-1 w-full dark:bg-black dark:text-white'>
                         {/* heading */}
                         <div className='flex items-center   p-8'>
-                            <div className='w-full flex flex-row items-start tex-left justify-center text-orange-500'>
+                            <div className='w-full flex flex-row items-start tex-left justify-center'>
                                 <Image src="/logo.png" width={30} height={30} className='rounded-md mr-2 ' alt='logo'/>
-                                <h1 className='leading-6 font-extrabold text-2xl'>Oasis <span>sips</span></h1>
+                                <h1 className='leading-6 font-semibold text-2xl'>Oasis <span>sips</span></h1>
                             </div>
                             <FaChevronLeft size={20} onClick={() => dispatch({
                                 type: "CLOSE"
@@ -111,14 +111,14 @@ export default function SideBar() {
                         <div className='border border-b-gray-200 w-full shadow-sm'></div>
 
                         <div className=' flex flex-col flex-1 items-center justify-start w-full mt-4'>
-                            <div className=' flex flex-col w-full pb-2'>
+                            <div className=' flex flex-col w-full  pb-2'>
 
 
 
                                 <>
                                     {menu.map((menuItem: any) => (
                                         <Link href={`${menuItem.url}`} key={menuItem.title} onClick={() => dispatch({ type: "CLOSE" })}>
-                                            <div className={`w-full flex items-start gap-2 pl-4 py-2 mb-2 hover:bg-gray-200 transition-all duration-100 ease-in hover:cursor-pointer hover:scale-90 active:bg-primary-600`}>
+                                            <div className={`w-3/4 flex items-center ml-6 gap-2 pl-4 py-2 mb-4 transition-all duration-400 ease-in transform hover:w-[180px]  hover:border-b-4  hover:border-b-orange-400 hover:cursor-pointer`}>
                                                 {menuItem.icon}
                                                 <p className='text-gray-500 dark:text-white capitalize font-medium'>{menuItem.title}</p>
                                             </div>

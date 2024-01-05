@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className='w-full relative grid max-h-screen grid-rows-header bg-zinc-100'>
+    <div className='w-full relative grid max-h-screen grid-rows-header bg-[#FFDAB9] h-screen'>
       <SideNavContextProvider>
         <NavBar />
-        <div className="flex flex-col flex-1 overflow-hidden h-full bg-white dark:bg-black pb-10">
+        <div className="flex flex-col flex-1  bg-white dark:bg-black pb-10">
           <SideBar />
           {children}
         </div>

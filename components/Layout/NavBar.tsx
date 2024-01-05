@@ -34,7 +34,7 @@ const NavBar = () => {
 
                         }} />
                     </div>
-                    <h2 className='flex text-base text-orange-500 font-semibold lg:text-2xl  items-center justify-start px-4 uppercase leading-4 text-orange-6  lg:text-md'>
+                    <h2 className='flex text-base  font-semibold lg:text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-green-500 to-orange-500 items-center justify-start px-4 uppercase leading-4 text-orange-6  lg:text-md'>
                         <TypeAnimation
                             sequence={[
                                 "OASIS",
