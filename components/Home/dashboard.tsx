@@ -12,7 +12,7 @@ const Dashboard = () => {
                 <h1 className='capitalize font-semibold py-2 text-gray-700 text-base md:text-md dark:text-white'>sales overview</h1>
 
                 <div className='flex flex-col md:flex-row justify-between mt-4  gap-2'>
-                    <div className='flex flex-col shadow-md rounded-md bg-gradient-to-tr from-slate-200 to-orange-200 p-2 gap-2'>
+                    <div className='flex flex-col shadow-md rounded-md bg-gradient-to-tr from-slate-200 to-primary-200 p-2 gap-2'>
                         <FaShoppingBag size={30} color={"orange"} />
                         <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
                             <p className='capitalize mr-2'>
@@ -22,7 +22,7 @@ const Dashboard = () => {
                         </div>
 
                     </div>
-                    <div className='flex flex-col shadow-md rounded-md bg-gradient-to-tr from-slate-200 to-orange-200 p-2 gap-2'>
+                    <div className='flex flex-col shadow-md rounded-md bg-gradient-to-tr from-slate-200 to-success-200 p-2 gap-2'>
                         <FaMoneyBill size={30} className="text-primary-400" />
                         <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
                             <p className='capitalize mr-2'>
@@ -125,7 +125,6 @@ const Dashboard = () => {
                    
                     </ScrollArea>
                 </div>
-
 
 
 
