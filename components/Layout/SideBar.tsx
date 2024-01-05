@@ -3,17 +3,23 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import { FaCartPlus, FaChevronLeft, FaMoneyBill, FaPersonBooth, FaReceipt, FaTools } from 'react-icons/fa';
+import { FaCartPlus, FaChevronLeft, FaHome, FaMoneyBill, FaPersonBooth, FaReceipt, FaTools } from 'react-icons/fa';
 import { LogOutIcon, MenuSquare, MoreVertical } from 'lucide-react';
 import Link from 'next/link';
 import { Tooltip } from '@mui/material';
 import { SideNavContext } from '@/context/SideNavContext';
-
+import Image from 'next/image';
+import { TypeAnimation } from 'react-type-animation';
 
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const menu: any = [
+    {
+        title: "dashboard",
+        icon: <FaHome color={"orange"} />,
+        url: "/dashboard",
+    },
     {
         title: "Products",
         icon: <FaCartPlus color={"orange"} />,
@@ -77,23 +83,27 @@ export default function SideBar() {
                     anchor={"left"}
                     open={open}
                     onClose={toggleDrawer()}
-                    className="dark:bg-black"
+                    className="dark:bg-transparent"
                     sx={{
                         width: "100%",
                         // padding: "4px",
                         transition: "0.5s ease-out",
                         '&[data-theme="dark"]': {
-                            backgroundColor: "black"
+                            backgroundColor: "transparent"
                         },
-                        overflow: "hidden"
+                        overflow: "hidden",
+                        
 
                     }}
 
                 >
-                    <div className='h-screen flex flex-col  w-full bg-white dark:bg-black dark:text-white'>
+                    <div className='h-screen flex flex-col overflow-hidden flex-1 w-full dark:bg-black dark:text-white'>
                         {/* heading */}
-                        <div className='flex items-center gap-8 justify-between p-8'>
-                            <h2 className='leading-4 cursor-pointer text-orange-500  font-semibold uppercase text-sm'>Sustainable Sips</h2>
+                        <div className='flex items-center   p-8'>
+                            <div className='w-full flex flex-row items-start tex-left justify-center text-orange-500'>
+                                <Image src="/logo.png" width={30} height={30} className='rounded-md mr-2 ' alt='logo'/>
+                                <h1 className='leading-6 font-extrabold text-2xl'>Oasis <span>sips</span></h1>
+                            </div>
                             <FaChevronLeft size={20} onClick={() => dispatch({
                                 type: "CLOSE"
                             })} className="hover:cursor-pointer hover:scale-105" />
@@ -127,7 +137,7 @@ export default function SideBar() {
 
 
                         </div>
-                        <div className="border-t flex items-center p-3 mt-[230px] mb-0">
+                        <div className="border-t flex items-center p-3  mb-0">
                             <Tooltip title="logout">
                                 <LogOutIcon className='hover:cursor-pointer' size={20} color='orange' />
                             </Tooltip>

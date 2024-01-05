@@ -7,12 +7,24 @@ import { SideNavContext } from '@/context/SideNavContext'
 import { Tooltip } from '@mui/material'
 import { LogOutIcon, SearchIcon } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/shad/ui/dropdown-menu'
+import { TypeAnimation } from 'react-type-animation'
 
 const NavBar = () => {
     const { dispatch } = useContext(SideNavContext)
     return (
-        <div className='w-full shadow-sm flex-1 sm:text-sm'>
-            <nav className="flex items-center justify-between flex-wrap bg-white dark:bg-black p-4">
+
+        <div className='w-full shadow-sm flex-1 sm:text-sm fixed bg-transparent bg-opacity-1 blur-3 backdrop-blur-sm' style={
+            {
+                background: 'rgba(255, 255, 255, 0.6)',
+                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+                backdropFilter: 'blur(13px)',
+                WebkitBackdropFilter: 'blur(13px)',
+                borderRadius: '10px',
+                border: '1px solid rgba(255, 255, 255, 0.18)'
+            }
+        }>
+
+            <nav className="flex items-center justify-between flex-wrap dark:bg-black p-4">
                 <div className='flex md:flex-row items-center justify-between gap-2'>
                     <div className='flex hover:cursor-pointer hover:scale-105 hover:shadow-md hover:rounded-md py-2 px-1 transition ease-in-out duration-75 hover:bg-gray-200 '>
                         <FaBars size={20} className='hover:scale-90' onClick={() => {
@@ -22,18 +34,31 @@ const NavBar = () => {
 
                         }} />
                     </div>
-                    <h2 className='flex  items-center justify-start px-4 uppercase leading-4 text-orange-6 text-sm lg:text-md'>Sustainable sips
+                    <h2 className='flex text-base text-orange-500 font-semibold lg:text-2xl  items-center justify-start px-4 uppercase leading-4 text-orange-6  lg:text-md'>
+                        <TypeAnimation
+                            sequence={[
+                                "OASIS",
+                                1000,
+                                "Liqour House",
+                                1000,
+                            ]}
+                            wrapper='p'
+                            speed={50}
+                            style={{}}
+                            repeat={Infinity}
+
+                        />
 
                     </h2>
 
 
                 </div>
-                <div className='flex justify-between mx-4 pr-4'>
-                    <div className='p-2 flex-1 flex justify-between items-center shadow-md rounded-md gap-1'>
-                        
-                            <input name="search" id="" placeholder="Search..." className='w-full px-2 bg-white dark:text-black text-sm outline-none rounded-sm'/>
-                            <SearchIcon size={20} className='hover:cursor-pointer'/>
-                        
+                <div className='flex justify-between mx-2 pr-2'>
+                    <div className='p-2 hidden flex-1 md:flex justify-between items-center shadow-md rounded-md gap-1'>
+
+                        <input name="search" id="" placeholder="Search..." className='w-full px-2 bg-white dark:text-black text-sm outline-none rounded-sm' />
+                        <SearchIcon size={20} className='hover:cursor-pointer' />
+
                     </div>
                     <Theme />
                     {/* <Tooltip title="profile">
