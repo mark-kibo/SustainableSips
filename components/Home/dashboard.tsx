@@ -105,7 +105,7 @@ const Dashboard = () => {
                 <div className='block mt-4'>
                     <ScrollArea className="h-[220px] flex-1 w-full overflow-visible">
                         {[1,2,3,4,5,6,7,8].map((index)=>(
-                             <div className='flex items-start justify-between w-full gap-2 mb-2' key={index}>
+                             <div className='flex items-start justify-between w-full gap-2 mb-2 h-full' key={index}>
                    
                              <Image src={"/logo.png"} alt="product" width={30} height={30} className="rounded-full shadow-md bg-gray-200"/>
      
