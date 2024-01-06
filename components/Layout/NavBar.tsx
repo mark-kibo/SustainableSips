@@ -13,11 +13,11 @@ const NavBar = () => {
     const { dispatch } = useContext(SideNavContext)
     return (
 
-        <div className='w-full shadow-sm flex-1 sm:text-sm fixed bg-transparent bg-opacity-1 blur-3 backdrop-blur-sm' style={
+        <div className='w-full shadow-sm flex-1 sm:text-sm fixed bg-transparent bg-opacity-1 z-10 backdrop-blur-sm' style={
             {
                 background: 'rgba(255, 255, 255, 0.6)',
                 boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-                backdropFilter: 'blur(13px)',
+                backdropFilter: 'blur(18px)',
                 WebkitBackdropFilter: 'blur(13px)',
                 borderRadius: '10px',
                 border: '1px solid rgba(255, 255, 255, 0.18)'

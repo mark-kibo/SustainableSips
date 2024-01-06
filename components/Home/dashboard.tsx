@@ -4,6 +4,7 @@ import SalesChart from './SalesPurchase'
 import Link from 'next/link'
 import { ScrollArea } from '@/shad/ui/scroll-area'
 import Image from 'next/image'
+import InventorySummary from './InventorySummary'
 
 const Dashboard = () => {
     return (
@@ -44,6 +45,15 @@ const Dashboard = () => {
                     </div>
 
 
+                    
+
+
+
+                </div>
+                <div className='flex md:flex-row flex-col justify-between items-center mx-2 mt-4'>
+                    <p className='py-2 text-md text-gray-300 dark:text-white'>No of sales: <span className='font-semibold text-black  dark:text-white'>20</span></p>
+                    <p className='py-2 text-md text-gray-300 dark:text-white'>No of products: <span className='font-semibold text-black dark:text-white'>20</span></p>
+                    <p className='py-2-text-md text-gray-300 dark:text-white'>No of sales: <span className='font-semibold text-black dark:text-white'>20</span></p>
 
                 </div>
 
@@ -51,25 +61,19 @@ const Dashboard = () => {
             <div id='dashboard_stats' className="col-span-5 my-4 mx-4 p-4 shadow-md border border-t-slate-200 rounded-sm">
                 <h1 className='capitalize font-semibold py-2 text-gray-700 text-base md:text-md dark:text-white'>Inventory summary</h1>
 
-                <div className='flex items-center justify-between mt-6'>
-                    <div className='flex flex-col items-center p-2 gap-2'>
+                {/* <div className='flex items-center mt-2'> */}
+                    {/* <div className='flex flex-col items-center p-2 gap-2'>
                         <FaShoppingCart size={30} color={"green"} className="text-center" />
                         <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
-                            <p className='text-sm mt-2 text-success-400'>
+                            <p className='text-sm mt-2'>
                                 Total available stock: <span className='text-slate-700 font-semibold'>50</span>
                             </p>
 
                         </div>
-                    </div>
-                    <div className='flex flex-col items-center p-2 gap-2'>
-                        <FaShoppingCart size={30} className="text-center text-error-400" />
-                        <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
-                            <p className='text-sm mt-2 text-wrror-400'>
-                                Total inavailable stock: <span className='text-slate-700 font-semibold'>50</span>
-                            </p>
-
-                        </div>
-                    </div>
+                    </div> */}
+                    
+                        <InventorySummary/>
+                    
                     {/* <div className='flex flex-col items-center'>
                         <FaShoppingCart size={30} className="text-center text-error-400" />
                         <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
@@ -79,7 +83,7 @@ const Dashboard = () => {
                             
                         </div>
                     </div> */}
-                </div>
+                {/* </div> */}
 
 
             </div>
