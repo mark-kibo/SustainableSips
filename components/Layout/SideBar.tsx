@@ -35,12 +35,7 @@ const menu: any = [
         icon: <FaPersonBooth className="hover:text-orange-300" />,
         url: "/user-management",
     },
-    {
-        title: "Receipts",
-        icon: <FaReceipt  />,
-        url: "/receipts",
-    },
-];
+]
 
 // Replace "YourReactIconComponentForProducts", "YourReactIconComponentForSales",
 // "YourReactIconComponentForUserManagement", and "YourReactIconComponentForReceipts"
