@@ -13,6 +13,14 @@ import {
     TextField,
 } from '@mui/material';
 
+interface Product {
+    id: number;
+    Products: string;
+    Buyingprice: number;
+    SellingPrice: number;
+    Quantity: number;
+    Description: string;
+}
 const AddProductModal: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
     const [formData, setFormData] = useState({
         name: '',
@@ -111,6 +119,8 @@ const AddProductModal: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
 
 const MyComponent: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredRows, setFilteredRows] = useState([]);
 
     const handleAddProduct = () => {
         setIsModalOpen(true);
@@ -118,6 +128,23 @@ const MyComponent: React.FC = () => {
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+    };
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const query = event.target.value.toLowerCase();
+
+        const filteredRows = rows.filter((row) => {
+            return (
+                row.id.toString().toLowerCase().includes(query) ||
+                row.Products.toLowerCase().includes(query) ||
+                row.Buyingprice.toString().toLowerCase().includes(query) ||
+                row.SellingPrice.toString().toLowerCase().includes(query) ||
+                row.Quantity.toString().toLowerCase().includes(query) ||
+                row.Description.toLowerCase().includes(query)
+            );
+        });
+
+        setSearchQuery(event.target.value);
+        setFilteredRows(filteredRows);
     };
 
     // Sample data for the table
@@ -185,14 +212,24 @@ const MyComponent: React.FC = () => {
 
             {/* Material-UI Table */}
             <Card className="m-4 p-4 w-full">
-                <div className="flex justify-between mb-4">
+                <div className="flex items-center justify-between mb-4">
                     <h2 className="text-xl font-bold text-black" style={{ color: '#e69b04' }}>
                         Products
                     </h2>
-                    <Button variant="contained" onClick={handleAddProduct} className='text-white  bg-[#ffab40] hover:bg-[rgba(255,171,64,0.9)] '>
-                        Add Product
-                    </Button>
+                    <div className="flex items-center space-x-2">
+                        <TextField
+                            label="Search"
+                            variant="outlined"
+                            size="small"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                        <Button variant="contained" onClick={handleAddProduct} className='text-white  bg-[#ffab40] hover:bg-[rgba(255,171,64,0.9)]'>
+                            Add Product
+                        </Button>
+                    </div>
                 </div>
+
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
@@ -206,7 +243,7 @@ const MyComponent: React.FC = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
+                            {filteredRows.map((row) => (
                                 <TableRow key={row.id}>
                                     <TableCell>{row.id}</TableCell>
                                     <TableCell>{row.Products}</TableCell>
@@ -219,11 +256,11 @@ const MyComponent: React.FC = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </Card >
+            </Card>
 
             {/* Add Product Modal */}
-            < AddProductModal open={isModalOpen} onClose={handleCloseModal} />
-        </div >
+            <AddProductModal open={isModalOpen} onClose={handleCloseModal} />
+        </div>
     );
 };
 
