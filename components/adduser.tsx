@@ -11,27 +11,27 @@ const UserCreation = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [role, setRole] = useState(''); // Assuming roles are predefined
 
-    const handleCreateUser = async () => {
-        // Handle user creation logic (e.g., API request to backend)
-        console.log('Creating user:', {
-            firstName,
-            lastName,
-            email,
-            phoneNumber,
-            password,
-            confirmPassword,
-            role,
-        });
+    // const handleCreateUser = async () => {
+    //     // Handle user creation logic (e.g., API request to backend)
+    //     console.log('Creating user:', {
+    //         firstName,
+    //         lastName,
+    //         email,
+    //         phoneNumber,
+    //         password,
+    //         confirmPassword,
+    //         role,
+    //     });
 
-        // Add backend logic for user creation and error handling
-    };
-    const handleProfileImageChange = (e) => {
-        const file = e.target.files[0];
-        setProfileImage(file);
-    };
+    //     // Add backend logic for user creation and error handling
+    // };
+    // const handleProfileImageChange = (e) => {
+    //     const file = e.target.files[0];
+    //     setProfileImage(file);
+    // };
 
     return (
-        <div className="max-w-2xl mx-auto mt-10 p-4 border rounded-md shadow-md">
+        <div className="max-w-2xl mx-auto mt-20 p-4 pb-16 border rounded-md shadow-md">
             <h2 className="text-xl font-semibold mb-4">Add New User</h2>
             <div className="grid grid-cols-2 gap-4">
                 <div className="mb-4">
@@ -43,7 +43,7 @@ const UserCreation = () => {
                         id="firstName"
                         className="mt-1 p-2 w-full border rounded-md"
                         value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+                    // onChange={(e) => setFirstName(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
@@ -55,7 +55,7 @@ const UserCreation = () => {
                         id="lastName"
                         className="mt-1 p-2 w-full border rounded-md"
                         value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                    // onChange={(e) => setLastName(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
@@ -67,7 +67,7 @@ const UserCreation = () => {
                         id="email"
                         className="mt-1 p-2 w-full border rounded-md"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                    // onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
@@ -79,7 +79,7 @@ const UserCreation = () => {
                         id="phoneNumber"
                         className="mt-1 p-2 w-full border rounded-md"
                         value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
+                    // onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
@@ -91,7 +91,7 @@ const UserCreation = () => {
                         id="password"
                         className="mt-1 p-2 w-full border rounded-md"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                    // onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
@@ -103,7 +103,7 @@ const UserCreation = () => {
                         id="confirmPassword"
                         className="mt-1 p-2 w-full border rounded-md"
                         value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    // onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
@@ -114,7 +114,7 @@ const UserCreation = () => {
                         id="role"
                         className="mt-1 p-2 w-full border rounded-md"
                         value={role}
-                        onChange={(e) => setRole(e.target.value)}
+                    // onChange={(e) => setRole(e.target.value)}
                     >
                         <option value="" disabled>
                             Select Role
@@ -132,14 +132,14 @@ const UserCreation = () => {
                         id="profileImage"
                         accept="image/*"
                         className="mt-1 p-2 w-full border rounded-md"
-                        onChange={handleProfileImageChange}
+                    // onChange={handleProfileImageChange}
                     />
                 </div>
             </div>
             <div className="text-center mr-4">
                 <button
                     className="w-32 h-10 bg-[#e69b04] text-white px-4 py-2 rounded-md hover:bg-[rgba(255,171,64,0.9)]"
-                    onClick={handleCreateUser}
+                // onClick={handleCreateUser}
                 >
                     Create User
                 </button>

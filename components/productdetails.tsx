@@ -16,23 +16,27 @@ const ProductDetails: React.FC<{ product: Product }> = ({ product }) => {
     const { id, name, image, Buyingprice, sellingprice, Quantity, Description } = product;
 
     return (
-        <div className="max-w-md mx-auto bg-white rounded-md overflow-hidden shadow-md">
-            <Image src={image} alt={`${name} Image`} width={600} height={300} />
-            <div className="p-4">
-                <h2 className="text-xl font-semibold mb-2">{name}</h2>
-                <div className="flex justify-between items-center mb-4">
+        <div className="max-w-xs mx-auto bg-white rounded-md overflow-hidden shadow-md mt-20 ">
+            <div className="image-container">
+                <Image src={image} alt={`${name} Image`} width={420} height={70} />
+            </div>
+            <div className="p-2">
+                <h2 className="text-lg font-semibold mb-2">{name}</h2>
+                <div className="flex justify-between items-center mb-2">
                     <div className="text-gray-700">Buying Price: ${Buyingprice}</div>
                     <div className="text-gray-700">Selling Price: ${sellingprice}</div>
                 </div>
-                <div className="mb-4">
+                <div className="mb-2">
                     <div className="text-gray-700">Quantity: {Quantity}</div>
                     <div className="text-gray-700">Description: {Description}</div>
                 </div>
-                <button
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-                >
-                    Add to Cart
-                </button>
+                <div className="mb-2 flex justify-center">
+                    <button
+                        className="bg-[#ffab40]  text-white px-3 py-1 rounded-md hover:bg-[rgba(255,171,64,0.9)]  focus:outline-none focus:shadow-outline-blue active:bg-blue-800 text-sm"
+                    >
+                        Add to Cart
+                    </button>
+                </div>
             </div>
         </div>
     );

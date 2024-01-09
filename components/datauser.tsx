@@ -26,23 +26,25 @@ export default function App() {
   );
 
   return (
-    <Table aria-label="Example table with icons">
-      <TableHeader>
-        <TableColumn>Name</TableColumn>
-        <TableColumn>Email</TableColumn>
-        <TableColumn>Role</TableColumn>
-        <TableColumn>Actions</TableColumn>
-      </TableHeader>
-      <TableBody emptyContent={"No rows to display."}>
-        {data.map((item) => (
-          <TableRow key={item.id}>
-            <TableCell>{item.name}</TableCell>
-            <TableCell>{item.email}</TableCell>
-            <TableCell>{item.role}</TableCell>
-            <TableCell>{renderActions()}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <div className="mt-20">
+      <Table aria-label="Example table with icons">
+        <TableHeader>
+          <TableColumn>Name</TableColumn>
+          <TableColumn>Email</TableColumn>
+          <TableColumn>Role</TableColumn>
+          <TableColumn>Actions</TableColumn>
+        </TableHeader>
+        <TableBody emptyContent={"No rows to display."}>
+          {data.map((item) => (
+            <TableRow key={item.id}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.email}</TableCell>
+              <TableCell>{item.role}</TableCell>
+              <TableCell>{renderActions()}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }

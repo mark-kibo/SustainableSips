@@ -11,24 +11,24 @@ const EditPage = () => {
     role: "Developer",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic to handle form submission (e.g., send data to the server)
-    console.log("Form submitted with data:", formData);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Add logic to handle form submission (e.g., send data to the server)
+  //   console.log("Form submitted with data:", formData);
+  // };
 
   return (
-    <div className="max-w-lg mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+    <div className="max-w-lg mx-auto mt-20 p-6 bg-white rounded-md shadow-md">
       <h2 className="text-2xl font-semibold mb-6">Edit User</h2>
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+      <form className="grid grid-cols-2 gap-4">
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-sm font-medium text-gray-600">
             First Name
@@ -38,7 +38,7 @@ const EditPage = () => {
             id="firstName"
             name="firstName"
             value={formData.firstName}
-            onChange={handleChange}
+            // onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>
@@ -51,7 +51,7 @@ const EditPage = () => {
             id="lastName"
             name="lastName"
             value={formData.lastName}
-            onChange={handleChange}
+            // onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>
@@ -64,7 +64,7 @@ const EditPage = () => {
             id="email"
             name="email"
             value={formData.email}
-            onChange={handleChange}
+            // onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>
@@ -77,7 +77,7 @@ const EditPage = () => {
             id="phoneNumber"
             name="phoneNumber"
             value={formData.phoneNumber}
-            onChange={handleChange}
+            // onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>
@@ -90,7 +90,7 @@ const EditPage = () => {
             id="role"
             name="role"
             value={formData.role}
-            onChange={handleChange}
+            // onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           />
         </div>

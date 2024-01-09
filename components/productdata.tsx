@@ -95,11 +95,11 @@ const AddProductModal: React.FC<{ open: boolean; onClose: () => void }> = ({ ope
                         onChange={handleFormChange}
                     />
                     <div className="mt-4 flex justify-between">
-                        <Button type="submit" variant="contained" color="primary" className="w-1/2">
+                        <Button type="submit" variant="contained" className='text-white bg-[#ffab40] hover:bg-[rgba(255,171,64,0.9)]' >
                             Submit
                         </Button>
                         <br></br>
-                        <Button variant="outlined" color="secondary" className="w-1/2" onClick={handleDiscard}>
+                        <Button variant="outlined" className='text-[#ffab40]' onClick={handleDiscard}>
                             Discard
                         </Button>
                     </div>
@@ -136,7 +136,7 @@ const MyComponent: React.FC = () => {
     const lowStocks = ['12'];
 
     return (
-        <div className="flex flex-wrap justify-around">
+        <div className="flex flex-wrap justify-around mt-16 mb-8 z-10">
             {/* Card 1 - Categories */}
             <Card className="m-4 p-4 w-56">
                 <h2 className="text-lg font-bold" style={{ color: '#e69b04' }}>
@@ -186,10 +186,10 @@ const MyComponent: React.FC = () => {
             {/* Material-UI Table */}
             <Card className="m-4 p-4 w-full">
                 <div className="flex justify-between mb-4">
-                    <h2 className="text-xl font-bold" style={{ color: '#e69b04' }}>
+                    <h2 className="text-xl font-bold text-black" style={{ color: '#e69b04' }}>
                         Products
                     </h2>
-                    <Button variant="contained" color="primary" onClick={handleAddProduct}>
+                    <Button variant="contained" onClick={handleAddProduct} className='text-white  bg-[#ffab40] hover:bg-[rgba(255,171,64,0.9)] '>
                         Add Product
                     </Button>
                 </div>
@@ -219,11 +219,11 @@ const MyComponent: React.FC = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </Card>
+            </Card >
 
             {/* Add Product Modal */}
-            <AddProductModal open={isModalOpen} onClose={handleCloseModal} />
-        </div>
+            < AddProductModal open={isModalOpen} onClose={handleCloseModal} />
+        </div >
     );
 };
 
