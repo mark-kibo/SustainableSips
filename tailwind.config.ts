@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss"
 
+const { nextui } = require("@nextui-org/react");
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -7,6 +9,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   prefix: "",
   theme: {
@@ -32,7 +35,7 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      colors:{
+      colors: {
         'gray': {
           50: "#f0f1f3",
           100: "#e0e7e9",
@@ -96,7 +99,7 @@ const config = {
       }
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), nextui()],
 } satisfies Config
 
 export default config
