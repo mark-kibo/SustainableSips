@@ -1,9 +1,10 @@
-// pages/api/auth/[...nextauth].ts
+import CredentialsProvider from "next-auth/providers/credentials";
 
-import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
+export const authOptions = {
 
-export default NextAuth({
+    pages: {
+        signIn: "/"
+    },
     providers: [
         CredentialsProvider({
             name: 'Credentials',
@@ -23,18 +24,24 @@ export default NextAuth({
 
                 if (user) {
                     // Return user information to create a session
-                    return Promise.resolve({
-                        id: user.id,
-                        username: user.username,
-                        email: user.email,
-
-                    });
+                    return user
                 } else {
                     // If no user was returned, display an error message
-                    return Promise.resolve(null);
+                    return null
                 }
             },
         }),
     ],
-    // Add any additional NextAuth.js configurations here
-});
+    callbacks: {
+        jwt: async ({ token, user }) => {
+            if (user) token = user
+            return token;
+        },
+        session: async ({ session, token }) => {
+            session = token
+            return session;
+        },
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+
+}

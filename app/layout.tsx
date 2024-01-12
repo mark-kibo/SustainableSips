@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import ThemeProviders from './ThemeProviders'
 import NextProvider from './nextuiProviders'
+import EditModalContextProvider from '@/context/ModalContext'
+import { CartProvider } from 'react-use-cart'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,10 +24,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProviders>
           <NextProvider>
-        {children}
-        </NextProvider>
+            <EditModalContextProvider>
+              
+              {children}
+              
+            </EditModalContextProvider>
+          </NextProvider>
         </ThemeProviders>
-        </body>
+      </body>
     </html>
   )
 }
