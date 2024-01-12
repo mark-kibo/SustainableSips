@@ -37,13 +37,12 @@ const NavBar = () => {
 
                         }} />
                     </div>
-                    <h2 className='flex text-base  font-semibold lg:text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-green-500 to-orange-500 items-center justify-start px-4 uppercase leading-4 text-orange-6  lg:text-md'>
+                    <h2 className='flex text-base font-semibold lg:text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-green-500 to-orange-500 items-center justify-start px-4 uppercase leading-4 text-orange-6  lg:text-md'>
                         <TypeAnimation
                             sequence={[
                                 "OASIS",
                                 1000,
-                                "Liqour House",
-                                1000,
+                               
                             ]}
                             wrapper='p'
                             speed={50}
@@ -56,18 +55,18 @@ const NavBar = () => {
 
 
                 </div>
-                <div className='flex justify-between mx-2 pr-2'>
-                    <div className='p-2 hidden flex-1 md:flex justify-between items-center shadow-md rounded-md gap-1'>
+                <div className='flex justify-between mr-1 pr-2'>
+                    {/* <div className='p-2 hidden flex-1 md:flex justify-between items-center shadow-md rounded-md gap-1'>
 
                         <input name="search" id="" placeholder="Search..." className='w-full px-2 bg-white dark:text-black text-sm outline-none rounded-sm' />
                         <SearchIcon size={20} className='hover:cursor-pointer' />
 
-                    </div>
+                    </div> */}
                     <Link href={"Cart"}>
-                        <button className='mx-2 rounded-full relative shadow-md  px-4 py-2'>
-                            <FaCartPlus size={20} className="mt-2" />
+                        <button className='mx-2 rounded-full relative shadow-md  px-3 py-2'>
+                            <FaCartPlus size={15} className="mt-2" />
 
-                            <span className="absolute top-0 right-0 -translate-x-1/2 -translate-y-1/2 bg-primary-200 rounded-full px-3 py-2 text-xs font-bold text-center text-white">{totalUniqueItems}</span>
+                            <span className="absolute top-0 right-0 -translate-x-1/2 -translate-y-1/2 bg-primary-200 rounded-full px-2 py-1 text-xs font-bold text-center text-white">{totalUniqueItems}</span>
                         </button>
                     </Link>
                     {/* <button className="w-16 h-16 rounded-full shadow-md bg-gray-700 flex items-center justify-center relative cursor-pointer hover:scale-110 transition-all duration-300">
@@ -93,7 +92,7 @@ const NavBar = () => {
 
 
                     <DropdownMenu  >
-                        <DropdownMenuTrigger>
+                        <DropdownMenuTrigger className='rounded-full px-1 py-1 shadow-md'>
                             <Tooltip title="profile">
                                 <Image
                                     src="https://img.freepik.com/free-photo/fashion-little-boy_71767-95.jpg?size=626&ext=jpg&ga=GA1.1.639452111.1704197644&semt=sph"
@@ -102,7 +101,7 @@ const NavBar = () => {
                                     height={30}
 
                                     objectFit='contain'
-                                    className='rounded-md shadow-md cursor-pointer'
+                                    className='rounded-full block'
                                 />
                             </Tooltip>
                         </DropdownMenuTrigger>
