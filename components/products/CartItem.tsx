@@ -1,7 +1,16 @@
 import React from 'react'
 import { useCart } from 'react-use-cart'
 
-const CartItem = ({ item }) => {
+interface Item{
+    id: string,
+    name?: string,
+    description?: string,
+    itemTotal?: number,
+    quantity?: number,
+
+}
+
+const CartItem = ({ item }:{item: any}) => {
     const { updateItemQuantity, removeItem } = useCart()
     return (
         <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
@@ -15,13 +24,13 @@ const CartItem = ({ item }) => {
                 <div className="flex items-center border-gray-100">
                     <span className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50" 
                     onClick={()=>{
-                        updateItemQuantity(item.id , item.quantity - 1)
+                        updateItemQuantity(item.id , item?.quantity - 1)
                     }}
                     > - </span>
                     <input className="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value={item.quantity} min="1" />
                     <span className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
                     onClick={()=>{
-                        updateItemQuantity(item.id, item.quantity + 1)
+                        updateItemQuantity(item.id, item?.quantity + 1)
                     }}
                     > + </span>
                 </div>

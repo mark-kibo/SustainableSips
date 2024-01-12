@@ -1,5 +1,5 @@
 "use client"
-import { GlobalStyles, dark, light } from '@/ThemeConfig'
+import { GlobalStyles, dark, light } from "@/ThemeConfig"
 import { Tooltip } from '@mui/material'
 import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
