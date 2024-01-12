@@ -16,9 +16,9 @@ const ProductDetails: React.FC<{ product: Product }> = ({ product }) => {
     const { id, name, image, Buyingprice, sellingprice, Quantity, Description } = product;
 
     return (
-        <div className="max-w-xs mx-auto bg-white rounded-md overflow-hidden shadow-md mt-20 ">
-            <div className="image-container">
-                <Image src={image} alt={`${name} Image`} width={420} height={70} />
+        <div className="max-w-xs mx-auto h-[600px] bg-white rounded-md overflow-hidden shadow-md mt-20 ">
+            <div className="image-container w-full">
+                <Image src={image} alt={`${name} Image`} width={70} height={70} className='w-full' />
             </div>
             <div className="p-2">
                 <h2 className="text-lg font-semibold mb-2">{name}</h2>
