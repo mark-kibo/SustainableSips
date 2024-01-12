@@ -22,14 +22,14 @@ const Theme = () => {
         <>
             {theme  == "dark" ? (
                 <Tooltip title="lightmode">
-                <button onClick={()=>setTheme("light")} className='px-4'>
+                <button onClick={()=>setTheme("light")} className='mr-2 px-4 py-2 shadow-md rounded-md'>
 
                     <FaMoon size={20}/>
                 </button>
                 </Tooltip>
             ):(
                 <Tooltip title="darkmode">
-                <button onClick={()=>setTheme("dark")} className='px-4'>
+                <button onClick={()=>setTheme("dark")} className='mr-2 px-4 py-2 shadow-md rounded-md'>
                     <FaSun size={20}/>
                     </button>
                     </Tooltip>

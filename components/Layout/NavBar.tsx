@@ -2,15 +2,18 @@
 import React, { useContext } from 'react'
 import Theme from '../theme'
 import Image from 'next/image'
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaCartPlus } from 'react-icons/fa'
 import { SideNavContext } from '@/context/SideNavContext'
 import { Tooltip } from '@mui/material'
 import { LogOutIcon, SearchIcon } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/shad/ui/dropdown-menu'
 import { TypeAnimation } from 'react-type-animation'
+import { useCart } from 'react-use-cart'
+import Link from 'next/link'
 
 const NavBar = () => {
     const { dispatch } = useContext(SideNavContext)
+    const { totalUniqueItems } = useCart()
     return (
 
         <div className='w-full shadow-sm flex-1 sm:text-sm fixed bg-transparent bg-opacity-1 z-10 backdrop-blur-sm' style={
@@ -60,6 +63,20 @@ const NavBar = () => {
                         <SearchIcon size={20} className='hover:cursor-pointer' />
 
                     </div>
+                    <Link href={"Cart"}>
+                        <button className='mx-2 rounded-full relative shadow-md  px-4 py-2'>
+                            <FaCartPlus size={20} className="mt-2" />
+
+                            <span className="absolute top-0 right-0 -translate-x-1/2 -translate-y-1/2 bg-primary-200 rounded-full px-3 py-2 text-xs font-bold text-center text-white">{totalUniqueItems}</span>
+                        </button>
+                    </Link>
+                    {/* <button className="w-16 h-16 rounded-full shadow-md bg-gray-700 flex items-center justify-center relative cursor-pointer hover:scale-110 transition-all duration-300">
+                        <svg viewBox="0 0 512 512" height="16" fill="white" class="transition-all duration-300">
+                        </svg>
+                        
+                    </button> */}
+
+
                     <Theme />
                     {/* <Tooltip title="profile">
                         <Image

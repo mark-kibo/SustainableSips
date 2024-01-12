@@ -18,22 +18,22 @@ const menu: any = [
     {
         title: "dashboard",
         icon: <FaHome  />,
-        url: "/dashboard",
+        url: "/sustainablesips/dashboard",
     },
     {
         title: "Products",
         icon: <FaCartPlus  />,
-        url: "/products",
+        url: "/sustainablesips/products",
     },
     {
         title: "Sales",
         icon: <FaMoneyBill  />,
-        url: "/sales",
+        url: "/sustainablesips/sales",
     },
     {
         title: "User Management",
         icon: <FaPersonBooth className="hover:text-orange-300" />,
-        url: "/user-management",
+        url: "/sustainablesips/usersmanagement",
     },
 ]
 
