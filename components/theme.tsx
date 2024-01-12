@@ -1,5 +1,5 @@
 "use client"
-import { GlobalStyles, dark, light } from '@/ThemeConfig'
+import { GlobalStyles, dark, light } from "@/ThemeConfig"
 import { Tooltip } from '@mui/material'
 import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
@@ -22,15 +22,15 @@ const Theme = () => {
         <>
             {theme  == "dark" ? (
                 <Tooltip title="lightmode">
-                <button onClick={()=>setTheme("light")} className='mr-2 px-4 py-2 shadow-md rounded-md'>
+                <button onClick={()=>setTheme("light")} className='mr-2 px-3 py-2 shadow-md rounded-full'>
 
-                    <FaMoon size={20}/>
+                    <FaMoon size={15}/>
                 </button>
                 </Tooltip>
             ):(
                 <Tooltip title="darkmode">
-                <button onClick={()=>setTheme("dark")} className='mr-2 px-4 py-2 shadow-md rounded-md'>
-                    <FaSun size={20}/>
+                <button onClick={()=>setTheme("dark")} className='mr-2 px-3 py-2 shadow-md rounded-full'>
+                    <FaSun size={15}/>
                     </button>
                     </Tooltip>
             )

@@ -35,21 +35,18 @@ const getUsers = async () => {
 const page = async() => {
   const users=await getUsers() || []
   return (
-    <div className='mt-[80px]  dark:bg-black overflow-hidden'>
-      <div className='mt-4 '>
-        <h2 className='leading-4 font-semibold mb-6 mr-2 ml-8 text-3xl'>User Management</h2>
-
-
+    <div className='mt-[80px]  dark:bg-black'>
+      <div className='mt-2'>
+        <h2 className='leading-4 font-semibold mb-4 mr-2 ml-8 text-3xl'>User Management</h2>
         <div className='flex justify-end px-10'>
           <AddUserModal />
+          <EditUserModal />
+
         </div>
 
         {/* data table */}
-
-        <div className='w-screen sm:overflow-x-scroll px-10'>
-
+        <div className='w-screen px-10'>
           <Suspense fallback="loading...">
-            <EditUserModal />
             <UserDataTable data={users} columns={productcolumns} />
           </Suspense>
         </div>

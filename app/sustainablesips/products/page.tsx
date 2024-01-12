@@ -20,7 +20,7 @@ const page = async() => {
   const sales: Sale[] | undefined = await getProducts();
   console.log(sales)
   return (
-    <div className='h-[100vh] mt-[80px] relative dark:bg-black overflow-hidden'>
+    <div className='mt-[80px] relative dark:bg-black'>
       <div className='mt-4 '>
         <h2 className='leading-4 font-semibold mb-6 mr-2 ml-8 text-3xl'> Products</h2>
 

@@ -17,7 +17,7 @@ const NavBar = dynamic(()=> import("@/components/Layout/NavBar"), {ssr:false})
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className='w-full relative grid max-h-screen grid-rows-header bg-[#FFDAB9] h-screen'>
+    <div className='w-full relative grid max-h-screen grid-rows-header  h-screen'>
       <SideNavContextProvider>
         <NavBar />
         <div className="flex flex-col flex-1 bg-white dark:bg-black pb-10">
