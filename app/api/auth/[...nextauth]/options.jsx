@@ -9,20 +9,23 @@ export const authOptions = {
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
-                username: { label: 'Username', type: 'text' },
+                username: { label: 'username', type: 'text' },
                 password: { label: 'Password', type: 'password' },
             },
             authorize: async (credentials) => {
+                console.log(credentials)
                 // Fetch user from your API and check credentials
-                const user = await fetch('http://localhost:8000/api/token/', {
+                const user = await fetch('https://sustainableapis.onrender.com/api/user/token/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(credentials),
-                }).then((res) => res.json());
+                })
+                console.log(user)
 
-                if (user) {
+                if (user.status === 200
+                    ) {
                     // Return user information to create a session
                     return user
                 } else {
@@ -34,7 +37,7 @@ export const authOptions = {
     ],
     callbacks: {
         jwt: async ({ token, user }) => {
-            if (user) token = user
+            if (user) token = {user:user}
             return token;
         },
         session: async ({ session, token }) => {

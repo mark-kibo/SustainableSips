@@ -1,4 +1,4 @@
-import Login from '@/components/login'
+import Login from '@/components/Login/login'
 import Theme from '@/components/theme'
 import Image from 'next/image'
 
