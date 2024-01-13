@@ -14,7 +14,7 @@ export const DeleteProduct = async({id}:{id:number;}) => {
 
 
 export const postProduct=async (product: any)=>{
-  const res= await axios.post(`http://127.0.0.1:8000/api/user/users/`, {product})
+  const res= await axios.post(`https://sustainableapis.onrender.com/api/products/list/`, {product})
 
   if(res.status !== 400){
     revalidateTag("products")
@@ -24,7 +24,7 @@ export const postProduct=async (product: any)=>{
 
 
 export const UpdateProduct=async (product: any, id:number)=>{
-  const res= await axios.patch(`http://127.0.0.1:8000/api/user/users/${id}`, {product})
+  const res= await axios.patch(`https://sustainableapis.onrender.com/api/user/users/${id}`, {product})
 
   if(res.status !== 400){
     revalidateTag("products")
