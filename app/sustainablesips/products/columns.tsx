@@ -10,7 +10,7 @@ import {
     CaretSortIcon,
     ChevronDownIcon,
     DotsHorizontalIcon,
-  } from "@radix-ui/react-icons"
+} from "@radix-ui/react-icons"
 import { Button } from "@nextui-org/react";
 import { useContext } from "react";
 import { EditModalContext } from "@/context/ModalContext";
@@ -45,8 +45,10 @@ export const productcolumns: GridColDef[] = [
     { field: 'name', headerName: 'Product name', width: 150, type: 'string' },
     // { field: 'buying_price', headerName: 'Amount', width: 150, type: 'number' },
     { field: 'selling_price', headerName: 'Unit price', width: 150, type: 'number' },
+    { field: 'category', headerName: 'Category', width: 150, type: 'string' },
+
     { field: 'quantity', headerName: 'Product quantity', width: 150, type: 'string' },
 
-    { field: 'description', headerName: 'Description', type: 'string', width: 350 },
-    
+    { field: 'description', headerName: 'Description', type: 'string', width: 150 },
+
 ]

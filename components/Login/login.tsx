@@ -36,7 +36,7 @@ const Login: React.FC = () => {
         mutation.mutateAsync().then(() => {
 
 
-            router.push(`${params.get("callbackUrl")}`)
+            router.push('/sustainablesips/dashboard')
         }
 
         ).catch(()=>{

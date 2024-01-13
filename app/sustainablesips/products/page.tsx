@@ -8,7 +8,7 @@ import { Sale } from '../sales/columns'
 
 
 async function getProducts(): Promise<Sale[]> {
-  const res = await fetch("https://659a4e05652b843dea536d5b.mockapi.io/liqour/sales")
+  const res = await fetch("https://sustainableapis.onrender.com/api/products/list/")
   const data = await res.json()
 
   return data
@@ -16,7 +16,7 @@ async function getProducts(): Promise<Sale[]> {
 }
 
 
-const page = async() => {
+const page = async () => {
   const sales: Sale[] | undefined = await getProducts();
   console.log(sales)
   return (
@@ -44,7 +44,7 @@ const page = async() => {
             </div>
 
           </div>
-        
+
           <div className='flex flex-col shadow-md rounded-md bg-gradient-to-tr from-slate-200 to-primary-200 p-2 gap-2'>
             <FaShoppingBag size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
@@ -57,16 +57,16 @@ const page = async() => {
           </div>
         </div>
         <div className='flex justify-end px-10'>
-          <AddProduct/>
-          </div>
+          <AddProduct />
+        </div>
 
         {/* data table */}
 
         <div className='h-auto w-screen sm:overflow-x-auto pb-10  px-10'>
-          
+
           <Suspense fallback="loading...">
-            <EditProductModal/>
-            
+            <EditProductModal />
+
             <ProductDataTable data={sales} columns={productcolumns} />
           </Suspense>
         </div>
