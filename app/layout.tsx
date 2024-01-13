@@ -5,6 +5,7 @@ import ThemeProviders from './ThemeProviders'
 import NextProvider from './nextuiProviders'
 import EditModalContextProvider from '@/context/ModalContext'
 import { CartProvider } from 'react-use-cart'
+import TansTackQueryProvider from './TansTackQueryProvider'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,9 +26,11 @@ export default function RootLayout({
         <ThemeProviders>
           <NextProvider>
             <EditModalContextProvider>
-              
-              {children}
-              
+              <TansTackQueryProvider>
+
+                {children}
+              </TansTackQueryProvider>
+
             </EditModalContextProvider>
           </NextProvider>
         </ThemeProviders>

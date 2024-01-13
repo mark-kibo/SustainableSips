@@ -1,20 +1,33 @@
 "use client"
 import dynamic from 'next/dynamic';
 import React from 'react';
+import { object } from 'yup';
 
 
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false })
+const data = [
+    { category: 'Alcohol', product_count: 2 },
+    { category: 'Soda', product_count: 1 },
+  ];
 
-const InventorySummary = () => {
+type Inventory={
+
+    product_count:number;
+    category:string;
+}
+
+const InventorySummary = ({inventory}: {inventory: Inventory[]}) => {
     const state = {
-        series: [44, 55, 41, 17, 15],
+        series: inventory?.map((item) => item.product_count),
+        
         options: {
-
+            labels: inventory?.map((item) => item.category),
             plotOptions: {
                 pie: {
                     startAngle: -90,
                     endAngle: 270,
+                    expandOnClick: true
                 },
             },
             chart: {
@@ -28,17 +41,18 @@ const InventorySummary = () => {
                     opacity: 0.35
                 }
             },
+            
             dataLabels: {
-                enabled: false,
+                enabled: true,
+                formatter: function (val: string) {
+                    return parseInt(val) + "%"
+                  }
             },
             fill: {
                 type: 'gradient',
             },
-            legend: {
-                formatter: function (val: string, opts: { w: { globals: { series: { [x: string]: string; }; }; }; seriesIndex: string | number; }) {
-                    return val + ' - ' + opts.w.globals.series[opts.seriesIndex];
-                },
-            },
+           
+            
 
             responsive: [
                 {
