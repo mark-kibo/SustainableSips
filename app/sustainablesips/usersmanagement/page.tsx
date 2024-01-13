@@ -10,30 +10,33 @@ import UserDataTable from '@/components/users/UserDatatable'
 import EditUserModal from '@/components/users/EditUserModal'
 import AddUserModal from '@/components/users/AddUserModal'
 import next from 'next'
+import { userrcolumns } from './columns'
 
 
 
 const getUsers = async () => {
-  const res = await fetch("https://659a4e05652b843dea536d5b.mockapi.io/liqour/users", {
+  const res = await fetch("http://127.0.0.1:8000/api/user/users/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Authorization": ""
     },
+    cache: "no-cache",
 
 
     next: { tags: ["users"] }
   }
   )
 
-  const data= await res.json()
-
-  return data
+  const data = await res.json()
+  // console.log(data.results)
+  return data.results
 }
 
 
-const page = async() => {
-  const users=await getUsers() || []
+const page = async () => {
+  const users = await getUsers() || []
+  console.log(users)
   return (
     <div className='mt-[80px]  dark:bg-black'>
       <div className='mt-2'>
@@ -47,7 +50,8 @@ const page = async() => {
         {/* data table */}
         <div className='w-screen px-10'>
           <Suspense fallback="loading...">
-            <UserDataTable data={users} columns={productcolumns} />
+
+            <UserDataTable data={users} columns={userrcolumns} />
           </Suspense>
         </div>
 

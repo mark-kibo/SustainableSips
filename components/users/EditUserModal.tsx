@@ -3,6 +3,8 @@ import React, { useContext } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@nextui-org/react";
 import { EditModalContext } from "@/context/ModalContext";
 import EditUser from "./EditUser";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 export default function EditUserModal() {
 

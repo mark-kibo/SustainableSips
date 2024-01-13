@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { object, string, number, date, InferType } from 'yup';
+import { UpdateProduct } from './ProductRequests';
+import { EditModalContext } from '@/context/ModalContext';
 
 const EditProduct = () => {
     
@@ -12,19 +14,19 @@ const EditProduct = () => {
     description: string().required("a short description is required "),
   });
 
+
+  const{id}= useContext(EditModalContext)
+
   
 type Product = InferType<typeof productSchema>;
 
   return (
     <div>
      <Formik
-       initialValues={{ name: '', quantity: '', buying_price:'', selling_price:0 , description:'' }}
+       initialValues={{ name: id.name, quantity: id.quantity, buying_price: id.buying_price, selling_price:id.selling_price , description:id.description }}
        validationSchema={productSchema}
-       onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
+       onSubmit={async(values, { setSubmitting }) => {
+         const res= await UpdateProduct(values, id.id)
        }}
      >
        {({ isSubmitting, isValid, errors, dirty }) => (
@@ -41,8 +43,8 @@ type Product = InferType<typeof productSchema>;
           
            
            <ErrorMessage name="description" component="div" />
-           <button type="submit" disabled={isSubmitting} className='mb-4 px-4 py-2 mt-2 w-full rounded-md shadow-md bg-orange-300 text-black font-semibold cursor-pointer'>
-             update
+           <button type="submit" disabled={isSubmitting} className='mb-4 px-4 py-2 mt-2 w-full rounded-md shadow-md bg-orange-300 text-black font-semibold cursor-pointer disabled:bg-gray-500'>
+             {isSubmitting ? "updating......." :"update product"}
            </button>
          </Form>
        )}

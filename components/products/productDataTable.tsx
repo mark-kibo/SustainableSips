@@ -22,6 +22,7 @@ import { EditModalContext } from '@/context/ModalContext';
 import { FaCartPlus, FaDownload, FaEdit, FaTrash } from 'react-icons/fa';
 
 import {useCart} from "react-use-cart"
+import { DeleteProduct } from './ProductRequests';
 
 
 export default function ProductDataTable({ data, columns }: { data: any, columns: GridColDef[] }) {
@@ -30,10 +31,9 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
     items: [],
     quickFilterExcludeHiddenColumns: true,
-    quickFilterValues: ['1'],
   });
 
-  const { onOpen } = useContext(EditModalContext)
+  const { onOpen, setId } = useContext(EditModalContext)
 
 
   const [columnVisibilityModel, setColumnVisibilityModel] =
@@ -51,11 +51,15 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
           <Edit2Icon className='mr-2 hover:cursor-pointer hover:bg-gray-200 hover: rounded-full p-2' size={15} color={"orange"}/>
           </button> */}
           <p className='shadow-sm rounded-sm text-primary-800 bg-white p-2 hover:bg-orange-300 cursor-pointer'
-            onClick={onOpen}
+            onClick={()=>{
+              setId(params.row)
+              onOpen()
+            }}
           ><FaEdit /></p>
-          <p className='shadow-sm rounded-sm text-error-600 bg-white p-2 hover:bg-orange-300 cursor-pointer' onClick={() => {
+          <p className='shadow-sm rounded-sm text-error-600 bg-white p-2 hover:bg-orange-300 cursor-pointer' onClick={async() => {
             if (confirm("are you sure?")) {
               console.log("deleted")
+              await DeleteProduct(params.row.id)
             }
           }}>
 

@@ -1,63 +1,68 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { object, string, number, date, InferType } from 'yup';
+import { EditModalContext } from '@/context/ModalContext';
+import { useSession } from 'next-auth/react';
+import axios from 'axios';
+import { UpdateUser } from './DeleteRequest';
 
 const EditUser = () => {
-    
+  const [showPassword, setShowPassword] = useState(false)
+
+  const { data: session } = useSession()
+  console.log(session?.user)
+
   let userSchema = object({
-    username: string().required("username name is required"),
-    email: string().required("user email is required").email(),
-    password: string().required("password is required").min(4, "not less than four").max(8, "exceeds limit of 8"),
-    phone_number: string().required("phone contact is required"),
-    role: string().required("role is required")
+    username: string().required("username required"),
+    password: string().required("password is required ").min(4, "not less than four characters"),
+    role: string()
   });
 
-  const [showPassword, setShowPassword]= useState(false)
+  const{id}= useContext(EditModalContext)
 
-  
-type Product = InferType<typeof userSchema>;
+  type Product = InferType<typeof userSchema>;
 
   return (
     <div>
-     <Formik
-       initialValues={{ username: '', email: '', password:'', phone_number:'', role: ''}}
-       validationSchema={userSchema}
-       onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
-       }}
-     >
-       {({ isSubmitting, isValid, errors, dirty }) => (
-         <Form>
-           <Field type="text" name="username" placeholder="username" className="mt-1 p-2 mb-2 border border-gray-300 rounded-md w-full"/>
-           <ErrorMessage name="username" component="div" />
-           <Field type="email" name="email" placeholder="john@doe.com" className="mt-1 p-2 mb-2 border border-gray-300 rounded-md w-full" />
-           <ErrorMessage name="email" component="div" />
-           <Field type={showPassword ? "text" : "password"} name="password" placeholder="....." className="mt-1 p-2 mb-2 border border-gray-300 rounded-md w-full" />
-           <ErrorMessage name="password" component="div" />
-           <div className='mt-2 mb-2 flex items-center justify-start gap-2'>
-           <label htmlFor="showpassword" className='flex items-center '>show password</label>
-           <input type="checkbox" className='flex items-center border  border-gray-300 rounded-full shadow-sm' onClick={()=>setShowPassword(!showPassword)} />
-           </div>
-            
-           
-           <select name="role" id="" className="mt-1 p-2 mb-2 border border-gray-300 rounded-md w-full">
-            <option value="1">Admin</option>
-            <option value="2">clerk</option>
-           </select>
-           
-           <ErrorMessage name="role" component="div" />
+      <Formik
+        initialValues={{ username: id.username, password: '', role: id.role }}
+        validationSchema={userSchema}
+        onSubmit={async(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 400);
 
-           <button type="submit" disabled={isSubmitting} className='mb-4 px-4 py-2 mt-2 w-full rounded-md shadow-md bg-orange-300 text-black font-semibold cursor-pointer'>
-             update
-           </button>
-         </Form>
-       )}
-     </Formik>
-   </div>
+          const res=await UpdateUser(values, id.id)
+          if(res !== 400){
+            setSubmitting(false);
+            console.log(res)
+          }
+          setSubmitting(false);
+
+
+        }}
+      >
+        {({ isSubmitting, isValid, errors, dirty }) => (
+          <Form>
+            <Field type="text" name="username" placeholder="john doe" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" />
+            <ErrorMessage name="username" component="div" />
+            <Field type="password" name="password" placeholder="....." className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" />
+            <ErrorMessage name="password" component="div" />
+            <Field type="text" name="role" placeholder="admin or clerk" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" />
+
+
+
+
+            <button type="submit" disabled={isSubmitting} className='bg-orange-300 mb-4 w-full px-4 py-2  shadow-md rounded-md text-black font-semibold cursor-pointer disabled:bg-gray-400'>
+              {isSubmitting ? "updating ...." : "update user"}
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   )
+
 }
 
 export default EditUser

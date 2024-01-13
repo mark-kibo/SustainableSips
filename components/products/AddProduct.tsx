@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { object, string, number, date, InferType } from 'yup';
+import {  postProduct } from './ProductRequests';
 
 const AddProductForm = () => {
     
@@ -20,11 +21,8 @@ type Product = InferType<typeof productSchema>;
      <Formik
        initialValues={{ name: '', quantity: '', buying_price:'', selling_price:'' , description:'' }}
        validationSchema={productSchema}
-       onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
+       onSubmit={async(values, { setSubmitting }) => {
+         const res= await postProduct(values)
        }}
      >
        {({ isSubmitting, isValid, errors, dirty }) => (
@@ -41,8 +39,8 @@ type Product = InferType<typeof productSchema>;
           
            
            <ErrorMessage name="description" component="div" />
-           <button type="submit" disabled={isSubmitting} className='bg-orange-300 mb-4 w-full px-4 py-2  shadow-md rounded-md text-black font-semibold cursor-pointer'>
-             add product
+           <button type="submit" disabled={isSubmitting} className='bg-orange-300 mb-4 w-full px-4 py-2  shadow-md rounded-md text-black font-semibold cursor-pointer disabled:bg-gray-500'>
+             {isSubmitting ? "adding product ..." : "add product"}
            </button>
          </Form>
        )}
@@ -51,4 +49,4 @@ type Product = InferType<typeof productSchema>;
   )
 }
 
-export default AddProductForm;
+export default AddProductForm
