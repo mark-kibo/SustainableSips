@@ -7,7 +7,7 @@ import DataTable from '@/components/Sales/data-table'
 
 
 async function getsales(): Promise<Sale[]> {
-  const res = await fetch("https://659a4e05652b843dea536d5b.mockapi.io/liqour/sales")
+  const res = await fetch("https://sustainableapis.onrender.com/api/sales/all/")
   const data = await res.json()
 
   return data

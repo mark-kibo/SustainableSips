@@ -5,6 +5,7 @@ import { productcolumns } from './columns'
 import AddProduct from './AddProduct'
 import EditProductModal from '@/components/products/EditProductModal'
 import { Sale } from '../sales/columns'
+import axios from 'axios'
 
 
 async function getProducts(): Promise<Sale[]> {
@@ -15,10 +16,18 @@ async function getProducts(): Promise<Sale[]> {
 
 }
 
+const getSummary = async () => {
+  const res = await axios.get("https://sustainableapis.onrender.com/api/common/summary2/")
+
+  return res.data
+}
+
+
 
 const page = async () => {
   const sales: Sale[] | undefined = await getProducts();
-  console.log(sales)
+  const summary = await getSummary() || [];
+  console.log(summary)
   return (
     <div className='mt-[80px] relative dark:bg-black'>
       <div className='mt-4 '>
@@ -29,7 +38,7 @@ const page = async () => {
             <FaShoppingBag size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
-                Categories: $2000
+                Categories: {summary.categories.category_count}
               </p>
             </div>
 
@@ -38,7 +47,7 @@ const page = async () => {
             <FaShoppingBag size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
-                total products: $2000
+                total products: {summary.products.total_products}
               </p>
               <small className="text-gray-500 pr-2">today</small>
             </div>
@@ -49,7 +58,7 @@ const page = async () => {
             <FaShoppingBag size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
-                low stocks: 12
+                low stocks: {summary.low_stock.low_quantity_count}
               </p>
               <small className="text-gray-500 pr-2">today</small>
             </div>

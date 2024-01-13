@@ -1,28 +1,16 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import ReactApexChart from 'react-apexcharts';
+import ChartOptions  from 'react-apexcharts';
 
 import dynamic from "next/dynamic";
 
-function SalesChart() {
+function SalesChart({salesData}: {salesData: any}) {
   const Chart = dynamic(() =>import("react-apexcharts"), { ssr: false });
 
-  const [series, setSeries] = useState([
-    {
-      name: 'Net Profit',
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-    },
-    {
-      name: 'Revenue',
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-    },
-    {
-      name: 'Free Cash Flow',
-      data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
-    },
-  ]);
+  const [series, setSeries] = useState<{ name: string; data: any[] }[]>([]);
 
-  const [options, setOptions] = useState({
+  const [options, setOptions] = useState<any>({
     
     plotOptions: {
       bar: {
@@ -40,12 +28,10 @@ function SalesChart() {
       width: 2,
       colors: ['transparent'],
     },
-    xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-    },
+    
     yaxis: {
       title: {
-        text: '$ (thousands)',
+        text: 'ksh',
       },
     },
     fill: {
@@ -53,10 +39,38 @@ function SalesChart() {
     },
     tooltip: {
       y: {
-        formatter: (val:number) => `$ ${val} thousands`,
+        formatter: (val:number) => `ksh  ${val}`,
       },
     },
   });
+
+  const [weeklySales, setWeeklySales] = useState([]);
+
+  useEffect(() => {
+    const formattedSeries = [
+      {
+        name: 'Total Amount',
+        data: salesData.map((day: { total_amount: any; }) => day.total_amount),
+      },
+      
+    ];
+
+    const formattedCategories = salesData.map((day: { date: string | number | Date; }) =>
+      new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' })
+    );
+
+    setOptions({
+      ...options,
+      xaxis: {
+        categories: formattedCategories,
+        title:{
+          text:"total amount"
+        }
+      },
+    });
+    setSeries(formattedSeries);
+  }, [weeklySales]);
+
 
   return (
     <div className='dark:bg-black dark:text-white'>
