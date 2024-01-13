@@ -20,6 +20,7 @@ import {
 } from "@radix-ui/react-icons"
 import { EditModalContext } from '@/context/ModalContext';
 import { FaDownload, FaEdit, FaTrash } from 'react-icons/fa';
+import { DeleteRequest } from './DeleteRequest';
 
 // const columns: GridColDef[] = [
 //   { field: 'id', headerName: 'ID', width: 80 },
@@ -45,10 +46,9 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
     const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
         items: [],
         quickFilterExcludeHiddenColumns: true,
-        quickFilterValues: ['1'],
     });
 
-    const { onOpen } = useContext(EditModalContext)
+    const { onOpen, setId } = useContext(EditModalContext)
 
 
     const [columnVisibilityModel, setColumnVisibilityModel] =
@@ -56,7 +56,7 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
 
     const actions = [{
         field: 'actions', headerName: 'actions', type: 'string', width: 150,
-        renderCell: (params: any) => {
+        renderCell: (params: { row: any; }) => {
             return (
                 <div className='flex items-start ml-2 justify-between gap-4 text-black'>
                     {/* <Button onPress={onOpen} className='bg-primary-300 active:bg-primary-900'>Edit product</Button>
@@ -66,10 +66,13 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
           <Edit2Icon className='mr-2 hover:cursor-pointer hover:bg-gray-200 hover: rounded-full p-2' size={15} color={"orange"}/>
           </button> */}
                     <p className='shadow-sm rounded-sm text-primary-800 bg-white p-2 hover:bg-orange-300 cursor-pointer'
-                        onClick={onOpen}
+                        onClick={()=>{
+                            onOpen()
+                            setId(params.row)
+                        }}
                     ><FaEdit /></p>
                     <p className='shadow-sm rounded-sm text-error-600 bg-white p-2 hover:bg-orange-300 cursor-pointer' onClick={() => {
-
+                        DeleteRequest(params.row.id)
                     }}><FaTrash /></p>
                     {/* <p className='shadow-sm rounded-sm text-success-600 bg-white p-2 hover:bg-orange-300 cursor-pointer ' onClick={() => {
 
@@ -81,6 +84,8 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
 
         },
     }]
+
+    console.log(data)
 
     return (
         <div className='w-full ' >
@@ -110,6 +115,7 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
 
 
                     }}
+                    getRowId={(row)=> row.id}
                     className='shadow-lg rounded-md  dark:text-white dark:border dark:border-white'
                 />
             </Box>

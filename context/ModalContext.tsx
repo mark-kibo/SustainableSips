@@ -1,13 +1,13 @@
 "use client"
 import { useDisclosure } from '@nextui-org/react';
-import React, { ReactNode, createContext, useReducer } from 'react'
+import React, { ReactNode, createContext, useReducer, useState } from 'react'
 
 export const EditModalContext =createContext<any>("")
 
 const EditModalContextProvider = ({children}:{children:ReactNode}) => {
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-
+    const [id, setId]=useState()
     const [openModal, dispatch] = useReducer(handleOpenModal, false)
     function handleOpenModal(currentState: boolean, action: any) {
         switch (action.type) {
@@ -26,8 +26,12 @@ const EditModalContextProvider = ({children}:{children:ReactNode}) => {
         openModal,
         isOpen,
         onOpen,
-        onOpenChange
+        onOpenChange,
+        id,
+        setId
     }
+
+    console.log(id)
   return (
     <EditModalContext.Provider value={context}>
         {children}
