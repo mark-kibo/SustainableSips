@@ -25,7 +25,7 @@ export const authOptions = {
                 console.log(user)
 
                 if (user.status === 200
-                    ) {
+                ) {
                     // Return user information to create a session
                     return user
                 } else {
@@ -37,12 +37,12 @@ export const authOptions = {
     ],
     callbacks: {
         jwt: async ({ token, user }) => {
-            if(user) token = user
+            if (user) token = { user: token }
             return token;
         },
         session: async ({ session, token }) => {
-            session.user = {user:token}
-              return session;
+            session = token
+            return session;
         },
     },
     secret: process.env.NEXTAUTH_SECRET,
