@@ -6,6 +6,8 @@ import NextProvider from './nextuiProviders'
 import EditModalContextProvider from '@/context/ModalContext'
 import { CartProvider } from 'react-use-cart'
 import TansTackQueryProvider from './TansTackQueryProvider'
+import { SessionProvider } from 'next-auth/react'
+import NextAuthProvider from './NextAuthProvider'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -27,8 +29,10 @@ export default function RootLayout({
           <NextProvider>
             <EditModalContextProvider>
               <TansTackQueryProvider>
+              <NextAuthProvider>
 
                 {children}
+                </NextAuthProvider>
               </TansTackQueryProvider>
 
             </EditModalContextProvider>
