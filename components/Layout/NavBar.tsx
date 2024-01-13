@@ -10,6 +10,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { TypeAnimation } from 'react-type-animation'
 import { useCart } from 'react-use-cart'
 import Link from 'next/link'
+import { signOut } from 'next-auth/react'
 
 const NavBar = () => {
     const { dispatch } = useContext(SideNavContext)
@@ -109,7 +110,9 @@ const NavBar = () => {
                             <DropdownMenuLabel className='items-center dark:text-black'>My Account</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300'>Profile</DropdownMenuItem>
-                            <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300'>Logout</DropdownMenuItem>
+                            <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300' onClick={async()=>{
+                                await signOut()
+                            }}>Logout</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
 
