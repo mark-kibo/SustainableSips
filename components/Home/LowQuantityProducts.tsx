@@ -15,7 +15,7 @@ const LowQuantityProducts = ({ items }: { items: Product[] }) => {
             <ScrollArea className="h-[220px] flex-1 w-full overflow-visible">
 
                 {items.map((item: Product, index: number) => (
-                    <div className='flex items-start justify-between w-full gap-2 mb-2 h-full'>
+                    <div className='flex items-start justify-between w-full gap-2 mb-2 h-full' key={index}>
 
                         <Image src={"/logo.png"} alt="product" width={30} height={30} className="rounded-full shadow-md bg-gray-200" key={index}/>
 
