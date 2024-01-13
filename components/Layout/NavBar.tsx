@@ -100,7 +100,7 @@ const NavBar = () => {
                                     width={30}
                                     height={30}
 
-                                    objectFit='contain'
+                                   
                                     className='rounded-full block'
                                 />
                             </Tooltip>
