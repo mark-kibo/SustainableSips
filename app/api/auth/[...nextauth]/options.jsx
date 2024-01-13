@@ -37,12 +37,12 @@ export const authOptions = {
     ],
     callbacks: {
         jwt: async ({ token, user }) => {
-            if (user) token = {user:user}
+            if(user) token = user
             return token;
         },
         session: async ({ session, token }) => {
-            session = token
-            return session;
+            session.user = {user:token}
+              return session;
         },
     },
     secret: process.env.NEXTAUTH_SECRET,
