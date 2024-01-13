@@ -2,15 +2,21 @@ import Dashboard from '@/components/Home/dashboard'
 import React, { Suspense } from 'react'
 import axios from "axios"
 
-const getSummary= async()=>{
-      const res = await axios.get("https://sustainableapis.onrender.com/api/common/summary/")
+const getSummary1 = async () => {
+  const res = await axios.get("https://sustainableapis.onrender.com/api/common/summary/")
 
-      return res.data
+  return res.data
+}
+const getSummary2 = async () => {
+  const res = await axios.get("https://sustainableapis.onrender.com/api/common/summary2/")
+
+  return res.data
 }
 
-const page = async() => {
+const page = async () => {
 
-  const summary= await getSummary() || []
+  const summary1 = await getSummary1() || []
+  const summary2 = await getSummary2() || []
 
   return (
     <div className='mt-[80px] mx-4 dark:bg-black'>
@@ -21,7 +27,7 @@ const page = async() => {
 
         <Suspense fallback={"<span> loading... </span>"}>
 
-          <Dashboard summary={summary} />
+          <Dashboard summary={summary1} summary2={summary2}/>
 
         </Suspense>
 

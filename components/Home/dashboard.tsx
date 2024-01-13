@@ -13,8 +13,8 @@ interface Product {
     quantity: number;
 }
 
-const Dashboard = ({ summary }: { summary: any }) => {
-    console.log(summary)
+const Dashboard = ({ summary, summary2 }: { summary: any; summary2:any; }) => {
+    console.log(summary2)
     return (
         <>
             <div className="col-span-7 p-4  text-black m-4 shadow-md border border-t-slate-200 rounded-sm">
@@ -97,7 +97,7 @@ const Dashboard = ({ summary }: { summary: any }) => {
             </div>
             <div className="col-span-7 p-4 shadow-md rounded-md h-[320px] bg-white dark:bg-black text-black m-4">
                 <h1 className='capitalize font-semibold py-2 text-gray-700 text-base md:text-md dark:text-white'>sales $ purchase</h1>
-                <SalesChart />
+                <SalesChart salesData={summary.weekly_sales}/>
 
 
 
