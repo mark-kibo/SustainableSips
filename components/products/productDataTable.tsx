@@ -58,8 +58,12 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
           ><FaEdit /></p>
           <p className='shadow-sm rounded-sm text-error-600 bg-white p-2 hover:bg-orange-300 cursor-pointer' onClick={async() => {
             if (confirm("are you sure?")) {
-              console.log("deleted")
-              await DeleteProduct(params.row.id)
+              // console.log("deleted")
+              const res =await DeleteProduct(params.row.id)
+              if(res === 200){
+                alert('Deletion Successful')
+              }
+
             }
           }}>
 
