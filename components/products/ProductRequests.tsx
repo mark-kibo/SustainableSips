@@ -24,7 +24,7 @@ export const postProduct=async (product: any)=>{
 
 
 export const UpdateProduct=async (product: any, id:number)=>{
-  const res= await axios.patch(`https://sustainableapis.onrender.com/api/user/users/${id}`, {product})
+  const res= await axios.patch(`https://sustainableapis.onrender.com/api/user/users/${id}/`, {product})
 
   if(res.status !== 400){
     revalidateTag("products")
