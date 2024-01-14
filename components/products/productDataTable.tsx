@@ -22,7 +22,9 @@ import { EditModalContext } from '@/context/ModalContext';
 import { FaCartPlus, FaDownload, FaEdit, FaTrash } from 'react-icons/fa';
 
 import {useCart} from "react-use-cart"
-import { DeleteProduct } from './ProductRequests';
+
+import axios from 'axios';
+import { Revalidation } from './Revalidation';
 
 
 export default function ProductDataTable({ data, columns }: { data: any, columns: GridColDef[] }) {
@@ -57,14 +59,26 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
             }}
           ><FaEdit /></p>
           <p className='shadow-sm rounded-sm text-error-600 bg-white p-2 hover:bg-orange-300 cursor-pointer' onClick={async() => {
-            if (confirm("are you sure?")) {
-              // console.log("deleted")
-              const res =await DeleteProduct(params.row.id)
-              if(res === 200){
-                alert('Deletion Successful')
+          
+              // console.log(params.row.id)
+              // const res =await DeleteProduct(params.row.id)
+              // if(res === 200){
+              //   alert('Deletion Successful')
+              // }
+
+              const res= await axios.delete(`https://sustainableapis.onrender.com/api/products/${params.row.id}/`)
+
+              if(res.status !== 400){
+                Revalidation("products")
+                alert(res.data)
+              }else{
+                alert(res.data)
               }
 
-            }
+
+             
+
+            
           }}>
 
             <FaTrash />

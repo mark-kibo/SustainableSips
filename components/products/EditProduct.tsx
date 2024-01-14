@@ -29,9 +29,12 @@ type Product = InferType<typeof productSchema>;
          const res= await UpdateProduct(values, id.id)
          if(res === 200){
           alert("successful")
-         }
+         }else{
+
+         
          alert("not sucessful")
-       }}
+         }
+        }}
      >
        {({ isSubmitting, isValid, errors, dirty }) => (
          <Form>

@@ -3,14 +3,15 @@
 import axios from "axios"
 import { revalidateTag } from "next/cache"
 
-export const DeleteProduct = async({id}:{id:number;}) => {
-  const res= await axios.delete(`https://sustainableapis.onrender.com/api/user/users/${id}/`)
+// export const DeleteProduct = async({id}:{id:string;}) => {
+//   console.log
+//   const res= await axios.delete(`http://127.0.0.1:8000/api/products/${id}/`)
 
-  if(res.status !== 400){
-    revalidateTag("products")
-  }
-  return res.status
-}
+//   if(res.status !== 400){
+//     revalidateTag("products")
+//   }
+//   return res.status
+// }
 
 
 export const postProduct=async (product: any)=>{
@@ -24,7 +25,7 @@ export const postProduct=async (product: any)=>{
 
 
 export const UpdateProduct=async (product: any, id:number)=>{
-  const res= await axios.patch(`https://sustainableapis.onrender.com/api/products/${id}/`, {product})
+  const res= await axios.patch(`https://sustainablesips.onrender.com/api/products/${id}/`, {product})
 
   if(res.status !== 400){
     revalidateTag("products")

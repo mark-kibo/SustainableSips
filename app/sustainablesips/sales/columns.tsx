@@ -60,7 +60,7 @@ export const columns: GridColDef[] = [
         },
     },
 
-    { field: 'product', headerName: 'product', type: 'string', width: 150 },
+    // { field: 'product', headerName: 'product', type: 'string', width: 150 },
     {
         field: 'date_created', headerName: 'Sale date', type: 'string', width: 150,
 
