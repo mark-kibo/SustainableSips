@@ -27,6 +27,10 @@ type Product = InferType<typeof productSchema>;
        validationSchema={productSchema}
        onSubmit={async(values, { setSubmitting }) => {
          const res= await UpdateProduct(values, id.id)
+         if(res === 200){
+          alert("successful")
+         }
+         alert("not sucessful")
        }}
      >
        {({ isSubmitting, isValid, errors, dirty }) => (
