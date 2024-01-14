@@ -7,12 +7,14 @@ import DataTable from '@/components/Sales/data-table'
 
 
 async function getsales(): Promise<Sale[]> {
-  const res = await fetch("https://sustainableapis.onrender.com/api/sales/all/")
+  const res = await fetch("https://sustainableapis.onrender.com/api/sales/all/", {cache:"no-cache", next:{tags:["sales"]}})
   const data = await res.json()
 
   return data
 
 }
+
+export const dynamic= "force-dynamic"
 
 const page = async () => {
   const sales: Sale[] | undefined = await getsales();

@@ -13,6 +13,7 @@ const getSummary2 = async () => {
   return res.data
 }
 
+export const dynamic= "force-dynamic"
 const page = async () => {
 
   const summary1 = await getSummary1() || []

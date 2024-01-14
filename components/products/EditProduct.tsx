@@ -23,7 +23,7 @@ type Product = InferType<typeof productSchema>;
   return (
     <div>
      <Formik
-       initialValues={{ name: id.name, quantity: id.quantity, buying_price: id.buying_price, selling_price:id.selling_price , description:id.description }}
+       initialValues={{ name: id.name, quantity: id.quantity, buying_price: id.buying_price, selling_price:id.price , description:id.description }}
        validationSchema={productSchema}
        onSubmit={async(values, { setSubmitting }) => {
          const res= await UpdateProduct(values, id.id)

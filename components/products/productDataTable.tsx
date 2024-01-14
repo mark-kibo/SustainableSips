@@ -68,7 +68,11 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
           </p>
           <p className='shadow-sm rounded-sm text-success-600 bg-white p-2 hover:bg-orange-300 cursor-pointer ' onClick={() => {
             console.log(params.row)
-                addItem(params.row)
+            if(params.row.quantity > 0){
+              addItem(params.row)
+
+            }
+            alert("out of stock")
           }}><FaCartPlus /></p>
         </div>
 
@@ -80,7 +84,7 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
   }]
 
   return (
-    <div className='w-full' >
+    <div className='w-full overflow-x-visible' >
       <Box sx={{ height: 400, }}>
         <DataGrid
           columns={[...columns, ...actions]}
@@ -107,7 +111,7 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
 
 
           }}
-          className='shadow-lg rounded-md  dark:text-white dark:border dark:border-white'
+          className='shadow-lg rounded-md  dark:text-white dark:border dark:border-white overflow-x-visible'
         />
       </Box>
     </div>

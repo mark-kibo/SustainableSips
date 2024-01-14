@@ -6,10 +6,12 @@ import AddProduct from './AddProduct'
 import EditProductModal from '@/components/products/EditProductModal'
 import { Sale } from '../sales/columns'
 import axios from 'axios'
+import { AirplayIcon, Briefcase, BriefcaseIcon } from 'lucide-react'
 
+export const dynamic="force-dynamic"
 
 async function getProducts(): Promise<Sale[]> {
-  const res = await fetch("https://659a4e05652b843dea536d5b.mockapi.io/liqour/sales")
+  const res = await fetch("https://sustainableapis.onrender.com/api/products/list/", {cache:"no-cache",next:{tags:["products"]}})
   const data = await res.json()
 
   return data
@@ -25,7 +27,7 @@ const getSummary = async () => {
 
 
 const page = async() => {
-  const sales: Sale[] | undefined = await getProducts();
+  const products: Sale[] | undefined = await getProducts();
   const summary = await getSummary() || [];
   console.log(summary)
   return (
@@ -35,7 +37,7 @@ const page = async() => {
 
         <div className='flex flex-col md:flex-row  mt-4 px-10 mb-4  gap-2'>
           <div className='flex flex-col shadow-md rounded-md bg-gradient-to-tr from-slate-200 to-primary-200 p-2 gap-2'>
-            <FaShoppingBag size={30} color={"orange"} />
+            <AirplayIcon size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
                 Categories: {summary.categories.category_count}
@@ -55,7 +57,7 @@ const page = async() => {
           </div>
         
           <div className='flex flex-col shadow-md rounded-md bg-gradient-to-tr from-slate-200 to-primary-200 p-2 gap-2'>
-            <FaShoppingBag size={30} color={"orange"} />
+            <BriefcaseIcon size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
                 low stocks: {summary.low_stock.low_quantity_count}
@@ -76,7 +78,7 @@ const page = async() => {
           <Suspense fallback="loading...">
             <EditProductModal/>
             
-            <ProductDataTable data={sales} columns={productcolumns} />
+            <ProductDataTable data={products} columns={productcolumns} />
           </Suspense>
         </div>
 
