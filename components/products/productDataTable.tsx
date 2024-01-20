@@ -65,15 +65,20 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
               // if(res === 200){
               //   alert('Deletion Successful')
               // }
+              const confirmMessage=confirm("Are you sure you wish to delete this product")
+              if(confirmMessage){
+                const res= await axios.delete(`http://127.0.0.1:5000/product/products/${params.row.id}/`)
 
-              const res= await axios.delete(`https://sustainableapis.onrender.com/api/products/${params.row.id}/`)
-
-              if(res.status !== 400){
+              if(res.status === 204){
                 Revalidation("products")
                 alert(res.data)
               }else{
                 alert(res.data)
               }
+
+              }
+
+              
 
 
              
@@ -89,8 +94,9 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
             if(params.row.quantity > 0){
               addItem(params.row)
 
-            }
+            }else{
             alert("out of stock")
+            }
           }}><FaCartPlus /></p>
         </div>
 

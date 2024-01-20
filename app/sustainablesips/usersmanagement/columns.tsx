@@ -31,11 +31,7 @@ export const userrcolumns: GridColDef[] = [
         headerName:"Username"
     },
     {
-        field:"phone_number",
-        headerName:"Contact"
-    },
-    {
-        field:"role",
+        field:"role_id",
         headerName:"Role"
     }
     

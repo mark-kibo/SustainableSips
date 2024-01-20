@@ -15,7 +15,8 @@ import { revalidateTag } from "next/cache"
 
 
 export const postProduct=async (product: any)=>{
-  const res= await axios.post(`https://sustainableapis.onrender.com/api/products/list/`, {product})
+  console.log('post product',product)
+  const res= await axios.post(`http://127.0.0.1:5000/product/products`, {product})
 
   if(res.status !== 400){
     revalidateTag("products")
@@ -25,7 +26,7 @@ export const postProduct=async (product: any)=>{
 
 
 export const UpdateProduct=async (product: any, id:number)=>{
-  const res= await axios.patch(`https://sustainablesips.onrender.com/api/products/${id}/`, {product})
+  const res= await axios.patch(`http://127.0.0.1:5000/product/products/${id}/`, {product})
 
   if(res.status !== 400){
     revalidateTag("products")
@@ -36,7 +37,7 @@ export const UpdateProduct=async (product: any, id:number)=>{
 
 
 export const makeSale=async (amount: any, id:string, quantity:any)=>{
-  const res= await axios.post(`https://sustainableapis.onrender.com/api/sales/sale/${id}/`, {sale_amount: amount, quantity:quantity })
+  const res= await axios.post(`http://127.0.0.1:5000/sale/makesale`, {sale_amount: amount, quantity:quantity, product_id: id })
 
   if(res.status !== 400){
     revalidateTag("sales")

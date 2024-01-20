@@ -26,6 +26,8 @@ type Product = InferType<typeof productSchema>;
        onSubmit={async(values, { setSubmitting }) => {
         console.log(values)
          const res= await postProduct(values)
+        setSubmitting(false)
+
        }}
      >
        {({ isSubmitting, isValid, errors, dirty, setFieldValue }) => (

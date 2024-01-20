@@ -25,7 +25,7 @@ const Dashboard = ({ summary, summary2 }: { summary: any; summary2:any; }) => {
                         <FaShoppingBag size={30} color={"orange"} />
                         <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
                             <p className='capitalize mr-2'>
-                                total sales: $2000
+                                total sales: {summary.total_sales}
                             </p>
                             <small className="text-gray-500 pr-2">today</small>
                         </div>

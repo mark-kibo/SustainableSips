@@ -3,12 +3,12 @@ import React, { Suspense } from 'react'
 import axios from "axios"
 
 const getSummary1 = async () => {
-  const res = await axios.get("https://sustainableapis.onrender.com/api/common/summary/")
+  const res = await axios.get("http://127.0.0.1:5000/summary")
 
   return res.data
 }
 const getSummary2 = async () => {
-  const res = await axios.get("https://sustainableapis.onrender.com/api/common/summary2/")
+  const res = await axios.get("http://127.0.0.1:5000/summary")
 
   return res.data
 }

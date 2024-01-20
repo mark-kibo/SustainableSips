@@ -11,7 +11,7 @@ import { AirplayIcon, Briefcase, BriefcaseIcon } from 'lucide-react'
 export const dynamic="force-dynamic"
 
 async function getProducts(): Promise<Sale[]> {
-  const res = await fetch("https://sustainableapis.onrender.com/api/products/list/", {cache:"no-cache",next:{tags:["products"]}})
+  const res = await fetch("http://127.0.0.1:5000/product/products", {cache:"no-cache",next:{tags:["products"]}})
   const data = await res.json()
 
   return data
@@ -19,7 +19,7 @@ async function getProducts(): Promise<Sale[]> {
 }
 
 const getSummary = async () => {
-  const res = await axios.get("https://sustainableapis.onrender.com/api/common/summary2/")
+  const res = await axios.get("http://127.0.0.1:5000/summary/category-count")
 
   return res.data
 }
@@ -40,7 +40,7 @@ const page = async() => {
             <AirplayIcon size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
-                Categories: {summary.categories.category_count}
+                Categories: {summary.category_count}
               </p>
             </div>
 
@@ -49,7 +49,7 @@ const page = async() => {
             <FaShoppingBag size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
-                total products: {summary.products.total_products}
+                total products: {summary.total_products}
               </p>
               <small className="text-gray-500 pr-2">today</small>
             </div>
@@ -60,7 +60,7 @@ const page = async() => {
             <BriefcaseIcon size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
-                low stocks: {summary.low_stock.low_quantity_count}
+                {/* low stocks: {summary?.low_quantity_count} */}
               </p>
               <small className="text-gray-500 pr-2">today</small>
             </div>

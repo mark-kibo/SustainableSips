@@ -15,7 +15,7 @@ import { userrcolumns } from './columns'
 
 
 const getUsers = async () => {
-  const res = await fetch("https://sustainableapis.onrender.com/api/user/users/", {
+  const res = await fetch("http://127.0.0.1:5000/users/users", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -29,8 +29,7 @@ const getUsers = async () => {
   )
 
   const data = await res.json()
-  // console.log(data.results)
-  return data.results
+  return data
 }
 
 

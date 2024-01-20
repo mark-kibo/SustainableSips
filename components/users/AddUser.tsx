@@ -15,9 +15,7 @@ const AddUser = () => {
 
   let userSchema = object({
     username : string().required("username required"),
-    password:string().required("password is required ").min(4, "not less than four characters"),
-    role:string(),
-    phone_number:string().required("contact is required").min(10, "not valid").max(10, "not valid")
+    password:string().required("password is required ").min(4, "not less than four characters")
   });
 
   
@@ -26,7 +24,7 @@ type Product = InferType<typeof userSchema>;
   return (
     <div>
      <Formik
-       initialValues={{ username: '', password: '', role:'' }}
+       initialValues={{ username: '', password: '' }}
        validationSchema={userSchema}
        onSubmit={async(values, { setSubmitting }) => {
          setTimeout(() => {
@@ -41,11 +39,10 @@ type Product = InferType<typeof userSchema>;
          <Form>
            <Field type="text" name="username" placeholder="john doe" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full"/>
            <ErrorMessage name="username" component="div" />
-           <Field type="text" name="phone_number" placeholder="076934..." className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full"/>
-           <ErrorMessage name="phone_number" component="div" />
+          
            <Field type="password" name="password" placeholder="....." className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" />
            <ErrorMessage name="password" component="div" />
-           <Field type="text" name="role" placeholder="admin or clerk" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" />
+           {/* <Field type="text" name="role" placeholder="admin or clerk" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" /> */}
            
           
            
