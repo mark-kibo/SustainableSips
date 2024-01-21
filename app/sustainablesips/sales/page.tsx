@@ -7,7 +7,7 @@ import DataTable from '@/components/Sales/data-table'
 
 
 async function getsales(): Promise<Sale[]> {
-  const res = await fetch("http://127.0.0.1:5000/sale/makesale", {cache:"no-cache", next:{tags:["sales"]}})
+  const res = await fetch("https://varumar.pythonanywhere.com/sale/makesale", {cache:"no-cache", next:{tags:["sales"]}})
   const data = await res.json()
 
   return data

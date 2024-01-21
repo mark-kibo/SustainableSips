@@ -15,7 +15,7 @@ import { userrcolumns } from './columns'
 
 
 const getUsers = async () => {
-  const res = await fetch("http://127.0.0.1:5000/users/users", {
+  const res = await fetch("https://varumar.pythonanywhere.com/users/users", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

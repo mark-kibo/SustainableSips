@@ -11,7 +11,7 @@ import { AirplayIcon, Briefcase, BriefcaseIcon } from 'lucide-react'
 export const dynamic="force-dynamic"
 
 async function getProducts(): Promise<Sale[]> {
-  const res = await fetch("http://127.0.0.1:5000/product/products", {cache:"no-cache",next:{tags:["products"]}})
+  const res = await fetch("https://varumar.pythonanywhere.com/product/products", {cache:"no-cache",next:{tags:["products"]}})
   const data = await res.json()
 
   return data
@@ -19,7 +19,7 @@ async function getProducts(): Promise<Sale[]> {
 }
 
 const getSummary = async () => {
-  const res = await axios.get("http://127.0.0.1:5000/summary/category-count")
+  const res = await axios.get("https://varumar.pythonanywhere.com/summary/category-count")
 
   return res.data
 }

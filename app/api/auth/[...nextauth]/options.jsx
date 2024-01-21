@@ -15,7 +15,7 @@ export const authOptions = {
             authorize: async (credentials) => {
                 console.log(credentials)
                 // Fetch user from your API and check credentials
-                const user = await fetch('http://127.0.0.1:5000/auth/login', {
+                const user = await fetch('https://varumar.pythonanywhere.com/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
