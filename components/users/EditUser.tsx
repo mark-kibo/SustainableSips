@@ -14,7 +14,7 @@ const EditUser = () => {
 
   let userSchema = object({
     username: string().required("username required"),
-    password: string().required("password is required ").min(4, "not less than four characters"),
+    password: string().min(4, "not less than four characters"),
     role: string()
   });
 
@@ -25,7 +25,7 @@ const EditUser = () => {
   return (
     <div>
       <Formik
-        initialValues={{ username: id.username, password: '', role: id.role }}
+        initialValues={{ username: id.username, password: '', role: id.role_id }}
         validationSchema={userSchema}
         onSubmit={async(values, { setSubmitting }) => {
         

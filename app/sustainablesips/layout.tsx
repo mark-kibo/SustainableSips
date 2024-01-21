@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic'
 import HandleNavNoSSR from '@/components/Layout/HandleNavNoSSR'
 
 export const metadata: Metadata = {
-  title: 'sustainable sips - dashboard',
+  title: 'oasis - dashboard',
   description: 'dash layout',
 }
 
