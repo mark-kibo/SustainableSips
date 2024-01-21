@@ -28,10 +28,7 @@ const EditUser = () => {
         initialValues={{ username: id.username, password: '', role: id.role }}
         validationSchema={userSchema}
         onSubmit={async(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        
 
           const res=await UpdateUser(values, id.id)
           if(res !== 400){
