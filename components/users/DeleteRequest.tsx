@@ -14,7 +14,7 @@ export const DeleteRequest = async (id: string) => {
 
 
 export const postUser = async (user: any) => {
-    const res = await axios.post(`https://varumar.pythonanywhere.com/users/users`, { user })
+    const res = await axios.post(`https://varumar.pythonanywhere.com/auth/signup`, { user })
 
     if (res.status !== 400) {
         revalidateTag("users")
