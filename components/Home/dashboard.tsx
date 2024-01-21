@@ -35,7 +35,7 @@ const Dashboard = ({ summary, summary2 }: { summary: any; summary2:any; }) => {
                         <FaMoneyBill size={30} className="text-primary-400" />
                         <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
                             <p className='capitalize mr-2'>
-                                total revenue: $2000
+                                total revenue: {summary.total_sales_rev}
                             </p>
                             <small className="text-gray-500 pr-2">today</small>
                         </div>
@@ -58,12 +58,7 @@ const Dashboard = ({ summary, summary2 }: { summary: any; summary2:any; }) => {
 
 
                 </div>
-                <div className='flex md:flex-row flex-col justify-between items-center mx-2 mt-4'>
-                    <p className='py-2 text-md text-gray-300 dark:text-white'>No of sales: <span className='font-semibold text-black  dark:text-white'>20</span></p>
-                    <p className='py-2 text-md text-gray-300 dark:text-white'>No of products: <span className='font-semibold text-black dark:text-white'>20</span></p>
-                    <p className='py-2-text-md text-gray-300 dark:text-white'>No of sales: <span className='font-semibold text-black dark:text-white'>20</span></p>
-
-                </div>
+                
 
             </div>
             <div id='dashboard_stats' className="col-span-5 my-4 mx-4 p-4 shadow-md border border-t-slate-200 rounded-sm">

@@ -51,7 +51,7 @@ const page = async() => {
               <p className='capitalize mr-2'>
                 total products: {summary.total_products}
               </p>
-              <small className="text-gray-500 pr-2">today</small>
+              {/* <small className="text-gray-500 pr-2">today</small> */}
             </div>
 
           </div>
@@ -60,9 +60,9 @@ const page = async() => {
             <BriefcaseIcon size={30} color={"orange"} />
             <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
               <p className='capitalize mr-2'>
-                {/* low stocks: {summary?.low_quantity_count} */}
+                low stocks: {summary.low_quantity_products}
               </p>
-              <small className="text-gray-500 pr-2">today</small>
+              {/* <small className="text-gray-500 pr-2">today</small> */}
             </div>
 
           </div>
