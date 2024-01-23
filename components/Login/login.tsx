@@ -24,24 +24,29 @@ const Login: React.FC = () => {
       });
 
       if (res?.status === 200) {
-        toast.success('Login successful!');
-        console.log('success');
+        return res; // Return the whole response for success
       } else {
-        toast.error('Login failed. Please check your credentials and try again.');
+        throw new Error('Login failed'); // Throw an error for failure
       }
-
-      return res?.status;
     } catch (error) {
-      console.error('Login failed:', error);
-
-      toast.error('Login failed. Please check your credentials and try again.');
-      return 500;
+      //console.error('Login failed:', error);
+      throw error; // Re-throw the error to let React Query handle it
     }
   };
 
   const mutation = useMutation({
     mutationFn: postUser,
-    onSuccess: () => {
+    onError: (error: Error) => {
+      toast.error('Login failed. Please check your credentials and try again.', )
+      setTimeout(() => {
+        toast.dismiss();
+      }, 60000);
+    },
+    onSuccess: (data) => {
+      toast.success('Login successful!');
+      setTimeout(() => {
+        toast.dismiss();
+      }, 60000);
       router.push('/sustainablesips/dashboard');
     },
   });
@@ -56,9 +61,11 @@ const Login: React.FC = () => {
     }
   };
 
+
   return (
     <div className="flex flex-col items-center md:flex-row md:h-screen">
       <Toaster />
+      {/* {mutation.isError && (toast.error('Login failed. Please check your credentials and try again.'))} */}
       <div className="flex items-center justify-center w-full md:w-1/2">
         <Image src="/oasis.png" alt="Login Image" width={800} height={600} priority={true} />
       </div>
@@ -103,7 +110,9 @@ const Login: React.FC = () => {
               className="w-full px-4 py-3 mb-4 md:mb-0 font-bold text-white bg-[#e69b04] rounded-md hover:bg-[rgba(255,171,64,0.9)] focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 disabled:bg-gray-700 disabled:cursor-not-allowed"
               disabled={mutation.isPending ? true : false}
             >
-              {mutation.isPending ? 'loading ...' : mutation.isSuccess ? 'Redirecting....' : 'Sign In'}
+              {mutation.isPending ? 'loading ...' : "Sign in"}
+              {/* {mutation.isError && 'loading ...'} */}
+              {/* {mutation.isPending && 'loading ...'} */}
             </button>
           </form>
         </div>

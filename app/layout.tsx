@@ -10,6 +10,7 @@ import { SessionProvider } from 'next-auth/react'
 import NextAuthProvider from './NextAuthProvider'
 
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
