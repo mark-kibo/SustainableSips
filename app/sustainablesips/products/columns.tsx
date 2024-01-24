@@ -25,6 +25,7 @@ export type product = {
     buying_price: number;
     selling_price: number;
     description: string;
+    profit:number;
 
 }
 
@@ -48,5 +49,12 @@ export const productcolumns: GridColDef[] = [
     },
 
     { field: 'description', headerName: 'Description', type: 'string', width: 350 },
+
+    {
+        field: 'profit', headerName: 'Profit', width: 150, type: 'number',
+        valueGetter: (params) => {
+            return (params.row.price - params.row.buying_price) * params.row.quantity;
+        }
+    },
    
 ]
