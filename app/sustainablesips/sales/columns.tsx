@@ -21,7 +21,7 @@ import { EditModalContext } from "@/context/ModalContext";
 export type Sale = {
     id: string;
     name: string;
-    image: string;
+    // image: string;
     price: number;
     description: string;
 
@@ -38,17 +38,17 @@ export const columns: GridColDef[] = [
     //     return rowNumber += 1; //
     //   },
 },
-    {
-        field: 'image',
-        headerName: 'Image',
-        type: 'string',
-        width: 20,
-        renderCell: (params) => {
-            console.log(params)
-            const imageSrc = params.row.image as string;
-            return <Image src={imageSrc} width={30} height={30} alt="product image" className="rounded-full" />;
-        }
-    },
+    // {
+    //     field: 'image',
+    //     headerName: 'Image',
+    //     type: 'string',
+    //     width: 20,
+    //     renderCell: (params) => {
+    //         console.log(params)
+    //         const imageSrc = params.row.image as string;
+    //         return <Image src={imageSrc} width={30} height={30} alt="product image" className="rounded-full" />;
+    //     }
+    // },
     {
         field: 'product_name', headerName: 'Product Name', width: 150, type: 'string'
     },

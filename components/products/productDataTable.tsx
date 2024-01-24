@@ -67,7 +67,7 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
               // }
               const confirmMessage=confirm("Are you sure you wish to delete this product")
               if(confirmMessage){
-                const res= await axios.delete(`http://127.0.0.1:5000/product/products/${params.row.id}/`)
+                const res= await axios.delete(`https://varumar.pythonanywhere.com/product/products/${params.row.id}/`)
 
               if(res.status === 204){
                 Revalidation("products")

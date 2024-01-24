@@ -11,6 +11,8 @@ import { SideNavContext } from '@/context/SideNavContext';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 
+import { useSession } from 'next-auth/react';
+
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -48,6 +50,8 @@ export default function SideBar() {
     //     left: false,
 
     // });
+    const { data: session } = useSession();
+
 
     const { open, dispatch } = React.useContext(SideNavContext)
     const active = React.useRef("inactive")

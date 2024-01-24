@@ -20,26 +20,34 @@ import {
 } from "@radix-ui/react-icons"
 import { EditModalContext } from '@/context/ModalContext';
 import { FaDownload } from 'react-icons/fa';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
-// const columns: GridColDef[] = [
-//   { field: 'id', headerName: 'ID', width: 80 },
-//   { field: 'name', headerName: 'Name', width: 150 },
-//   { field: 'email', headerName: 'Email', width: 150 },
-//   { field: 'age', headerName: 'Age', type: 'number' },
-// ];
 
-// const rows: GridRowsProp = [
-//   { id: 1, name: randomTraderName(), email: randomEmail(), age: 25 },
-//   { id: 2, name: randomTraderName(), email: randomEmail(), age: 36 },
-//   { id: 3, name: randomTraderName(), email: randomEmail(), age: 19 },
-//   { id: 4, name: randomTraderName(), email: randomEmail(), age: 28 },
-//   { id: 5, name: randomTraderName(), email: randomEmail(), age: 23 },
-//   { id: 6, name: randomTraderName(), email: randomEmail(), age: 27 },
-//   { id: 7, name: randomTraderName(), email: randomEmail(), age: 18 },
-//   { id: 8, name: randomTraderName(), email: randomEmail(), age: 31 },
-//   { id: 9, name: randomTraderName(), email: randomEmail(), age: 24 },
-//   { id: 10, name: randomTraderName(), email: randomEmail(), age: 35 },
-// ];
+const downloadPDF = () => {
+  // Get the HTML element to be converted to PDF
+  const input = document.getElementById('sales-table');
+
+  // Check if the element exists
+  if (!input) {
+    console.error('Element with id "sales-table" not found');
+    return;
+  }
+
+  html2canvas(input)
+    .then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'pt', 'a4'); 
+      pdf.setFontSize(40); 
+      pdf.text('Sales Receipt', 20, 10); 
+      pdf.addImage(imgData, 'PNG', 20, 30, 250, 250);
+      pdf.save('sales_receipt.pdf');
+    })
+    .catch((error) => {
+      console.error('Error occurred while generating PDF:', error);
+    });
+};
+
 
 export default function DataTable({ data, columns }: { data: any, columns: GridColDef[] }) {
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
@@ -60,7 +68,7 @@ export default function DataTable({ data, columns }: { data: any, columns: GridC
       return (
         
             // <Button onPress={onOpen} className='bg-primary-300 active:bg-primary-900'>Edit sale</Button>
-            <Button onPress={onOpen} className='bg-primary-300 active:bg-primary-900 flex items-center justify-between gap-2 text-white'><FaDownload/> receipt</Button>
+            <Button onClick={downloadPDF} className='bg-primary-300 active:bg-primary-900 flex items-center justify-between gap-2 text-white'><FaDownload/> receipt</Button>
 
           
       )
@@ -73,7 +81,9 @@ export default function DataTable({ data, columns }: { data: any, columns: GridC
   return (
     <div className='w-full ' >
       <Box sx={{ height: 400, }}>
+      <div id="sales-table">
         <DataGrid
+        
           columns={[...columns, ...actions]}
           rows={data}
         disableColumnFilter
@@ -100,6 +110,7 @@ export default function DataTable({ data, columns }: { data: any, columns: GridC
         }}
         className='shadow-lg rounded-md  dark:text-white dark:border dark:border-white'
         />
+        </div>
       </Box>
     </div>
   );
