@@ -10,26 +10,48 @@ import { AirplayIcon, Briefcase, BriefcaseIcon } from 'lucide-react'
 
 export const dynamic="force-dynamic"
 
-async function getProducts(): Promise<Sale[]> {
-  const res = await fetch("https://varumar.pythonanywhere.com/product/products", {cache:"no-cache",next:{tags:["products"]}})
-  const data = await res.json()
 
-  return data
 
-}
+export const calculateTotalProfit = (products: Sale[]) => {
+  return products.reduce((total, product) => {
+    const profit = (product.price - product.buying_price) * product.quantity;
+    return total + profit;
+  }, 0);
+};
+
+const getProducts = async (): Promise<Sale[]> => {
+  const res = await fetch("https://varumar.pythonanywhere.com/product/products", {
+    cache: "no-cache",
+    next: { tags: ["products"] },
+  });
+  const data = await res.json();
+  console.log(data);
+
+  return data;
+};
 
 const getSummary = async () => {
-  const res = await axios.get("https://varumar.pythonanywhere.com/summary/category-count")
+  const res = await axios.get("https://varumar.pythonanywhere.com/summary/category-count");
 
-  return res.data
-}
+  return res.data;
+};
 
-
-
-const page = async() => {
+const fetchData = async () => {
   const products: Sale[] | undefined = await getProducts();
   const summary = await getSummary() || [];
-  console.log(summary)
+  const totalProfit = calculateTotalProfit(products);
+
+  return {
+    totalProfit,
+    summary,
+    products,
+  };
+};
+
+const page = async () => {
+  const { totalProfit, summary, products } = await fetchData();
+
+
   return (
     <div className='mt-[80px] relative dark:bg-black'>
       <div className='mt-4 '>
@@ -66,6 +88,7 @@ const page = async() => {
             </div>
 
           </div>
+          
         </div>
         <div className='flex justify-end px-10'>
           <AddProduct/>
@@ -84,7 +107,7 @@ const page = async() => {
 
       </div>
     </div>
-  )
-}
+  )};
+
 
 export default page

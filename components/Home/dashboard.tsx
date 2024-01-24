@@ -1,4 +1,5 @@
-import React from 'react'
+'use client';
+import React, { useState, useEffect } from 'react';
 import { FaChartLine, FaCubes, FaMoneyBill, FaShoppingBag, FaShoppingBasket, FaShoppingCart } from 'react-icons/fa'
 import SalesChart from './SalesPurchase'
 import Link from 'next/link'
@@ -13,8 +14,42 @@ interface Product {
     quantity: number;
 }
 
+interface Sale extends Product {
+    price: number;
+    buying_price: number;
+}
+
+const calculateTotalProfit = (products: Sale[]) => {
+  return products.reduce((total, product) => {
+    const profit = (product.price - product.buying_price) * product.quantity;
+    return total + profit;
+  }, 0);
+};
+
+const getProducts = async (): Promise<Sale[]> => {
+  const res = await fetch("https://varumar.pythonanywhere.com/product/products", {
+    cache: "no-cache",
+    next: { tags: ["products"] },
+  });
+  const data = await res.json();
+
+  return data;
+};
+
 const Dashboard = ({ summary, summary2 }: { summary: any; summary2:any; }) => {
-    console.log(summary2)
+  const [totalProfit, setTotalProfit] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchAndCalculateProfit = async () => {
+      const products = await getProducts();
+      const profit = calculateTotalProfit(products);
+      setTotalProfit(profit);
+    };
+
+    fetchAndCalculateProfit();
+  }, []);
+
+  console.log(summary2)
     return (
         <>
             <div className="col-span-7 p-4  text-black m-4 shadow-md border border-t-slate-200 rounded-sm">
@@ -45,7 +80,7 @@ const Dashboard = ({ summary, summary2 }: { summary: any; summary2:any; }) => {
                         <FaChartLine size={30} color={"green"} />
                         <div className='flex justify-between items-center gap-2 text-left mt-2 py-2'>
                             <p className='capitalize mr-2'>
-                                total profit: $2000
+                                total profit: {totalProfit}
                             </p>
                             <small className="text-gray-500 pr-2">today</small>
                         </div>

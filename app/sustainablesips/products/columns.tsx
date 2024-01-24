@@ -30,6 +30,7 @@ export type product = {
 }
 
 
+
 export const productcolumns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 80, type: 'number' },
     
