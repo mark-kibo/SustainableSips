@@ -106,14 +106,14 @@ const NavBar = () => {
                                 />
                             </Tooltip>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-40 p-2 z-10 mr-4">
+                        {/* <DropdownMenuContent className="w-40 p-2 z-10 mr-4">
                             <DropdownMenuLabel className='items-center dark:text-black'>My Account</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300'>Profile</DropdownMenuItem>
                             <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300' onClick={async()=>{
                                 await signOut()
                             }}>Logout</DropdownMenuItem>
-                        </DropdownMenuContent>
+                        </DropdownMenuContent> */}
                     </DropdownMenu>
 
 
