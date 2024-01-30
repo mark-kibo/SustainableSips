@@ -13,6 +13,7 @@ import { TypeAnimation } from 'react-type-animation';
 
 import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react'
 
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
@@ -145,7 +146,8 @@ export default function SideBar() {
                         </div>
                         <div className="border-t flex items-center p-3  mb-0">
                             <Tooltip title="logout">
-                                <LogOutIcon className='hover:cursor-pointer' size={20} color='orange' />
+                                <LogOutIcon className='hover:cursor-pointer' size={20} color='orange'onClick={async () => {
+    await signOut()}} />
                             </Tooltip>
                             <div
                                 className="
@@ -159,6 +161,8 @@ export default function SideBar() {
 
                             </div>
                         </div>
+                      
+
 
                     </div>
 
