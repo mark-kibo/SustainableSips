@@ -111,7 +111,11 @@ export default function ProductDataTable({ data, columns }: { data: any, columns
     <div className='w-full overflow-x-visible' >
       <Box sx={{ height: 400, }}>
         <DataGrid
-          columns={[...columns, ...actions]}
+            columns={[...columns.map(col => ({
+          ...col,
+          headerClassName: 'font-bold text-black-1000 capitalize'
+        })), ...actions]}
+          // columns={[...columns, ...actions]}
           rows={data}
           disableColumnFilter
           // disableColumnMenu

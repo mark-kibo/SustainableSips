@@ -91,7 +91,10 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
         <div className='w-full ' >
             <Box sx={{ height: 400, }}>
                 <DataGrid
-                    columns={[...columns, ...actions]}
+                   columns={[...columns.map(col => ({
+                    ...col,
+                    headerClassName: 'font-bold text-black-1000 capitalize'
+                  })), ...actions]}
                     rows={data}
                     disableColumnFilter
                     // disableColumnMenu
