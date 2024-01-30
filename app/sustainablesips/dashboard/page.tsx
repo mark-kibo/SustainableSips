@@ -2,6 +2,7 @@ import Dashboard from '@/components/Home/dashboard'
 import React, { Suspense } from 'react'
 import axios from "axios"
 
+
 const getSummary1 = async () => {
   const res = await axios.get("https://varumar.pythonanywhere.com/summary")
 

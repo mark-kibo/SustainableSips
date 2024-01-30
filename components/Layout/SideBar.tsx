@@ -11,6 +11,7 @@ import { SideNavContext } from '@/context/SideNavContext';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 
+import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 
@@ -39,18 +40,24 @@ const menu: any = [
     },
 ]
 
-// Replace "YourReactIconComponentForProducts", "YourReactIconComponentForSales",
-// "YourReactIconComponentForUserManagement", and "YourReactIconComponentForReceipts"
-// with actual React icons components of your choice.
+// Extend the 'Session' type to include 'username' in 'user'
+interface ExtendedSession extends Session {
+    user: {
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      username?: string | null; 
+    };
+  }
+
+
 
 
 export default function SideBar() {
-    // const [state, setState] = React.useState({
-
-    //     left: false,
-
-    // });
-    const { data: session } = useSession();
+   
+    const { data: session } = useSession() as { data: ExtendedSession | null };
+    console.log(session)
+    console.log('hi')
 
 
     const { open, dispatch } = React.useContext(SideNavContext)
@@ -147,9 +154,8 @@ export default function SideBar() {
 
                             >
                                 <div className="leading-4">
-                                    <h4 className="font-semibold">John Doe</h4>
-                                    <span className="text-xs text-gray-600">johndoe@gmail.com</span>
-                                </div>
+    <h4 className="font-semibold">{session?.user?.username || 'Anonymous'}</h4>
+</div>
 
                             </div>
                         </div>

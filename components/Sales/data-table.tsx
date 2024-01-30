@@ -24,29 +24,6 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 
-// const downloadPDF = () => {
-//   // Get the HTML element to be converted to PDF
-//   const input = document.getElementById('sales-table');
-
-//   // Check if the element exists
-//   if (!input) {
-//     console.error('Element with id "sales-table" not found');
-//     return;
-//   }
-
-//   html2canvas(input)
-//     .then((canvas) => {
-//       const imgData = canvas.toDataURL('image/png');
-//       const pdf = new jsPDF('p', 'pt', 'a4'); 
-//       pdf.setFontSize(20); 
-//       pdf.text('Sales Receipt', 20, 10); 
-//       pdf.addImage(imgData, 'PNG', 20, 30, 250, 250);
-//       pdf.save('sales_receipt.pdf');
-//     })
-//     .catch((error) => {
-//       console.error('Error occurred while generating PDF:', error);
-//     });
-// };
 
 
 export default function DataTable({ data, columns }: { data: any, columns: GridColDef[] }) {
@@ -67,17 +44,17 @@ export default function DataTable({ data, columns }: { data: any, columns: GridC
 
     html2canvas(input)
       .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'pt', 'a4');
-        pdf.setFontSize(20);
-        pdf.text('Sales Receipt', 20, 10);
-        pdf.addImage(imgData, 'PNG', 20, 30, 250, 250);
+        // const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'pt', 'a9');
+        pdf.setFontSize(8);
+        pdf.text('Sales Receipt', 20, 30);
+        // pdf.addImage(imgData, 'PNG', 20, 30, 250, 250);
 
         // Customize the receipt content based on the sale data
-        pdf.text(`Product: ${sale.product_name}`, 20, 300);
-        pdf.text(`Amount: $${parseFloat(sale.sale_amount)}`, 20, 320);
-        pdf.text(`Quantity: ${sale.quantity}`, 20, 340);
-        pdf.text(`Sale Date: ${new Date(sale.created_at).toLocaleDateString()}`, 20, 360);
+        pdf.text(`Product: ${sale.product_name}`, 20, 60);
+        pdf.text(`Amount: $${parseFloat(sale.sale_amount)}`, 20, 80);
+        pdf.text(`Quantity: ${sale.quantity}`, 20, 100);
+        pdf.text(`Sale Date: ${new Date(sale.created_at).toLocaleDateString()}`, 20, 120);
 
         pdf.save(`sales_receipt_${sale.id}.pdf`);
       })
@@ -102,10 +79,7 @@ export default function DataTable({ data, columns }: { data: any, columns: GridC
     renderCell: (params: any) => {
       return (
         
-            // <Button onPress={onOpen} className='bg-primary-300 active:bg-primary-900'>Edit sale</Button>
-            <Button  onClick={() => downloadPDF(params.row.id)} className='bg-primary-300 active:bg-primary-900 flex items-center justify-between gap-2 text-white'><FaDownload/> receipt</Button>
-
-          
+            <Button  onClick={() => downloadPDF(params.row.id)} className='bg-primary-300 active:bg-primary-900 flex items-center justify-between gap-2 text-white'><FaDownload/> receipt</Button> 
       )
 
 

@@ -21,8 +21,10 @@ import { EditModalContext } from "@/context/ModalContext";
 export type Sale = {
     id: string;
     name: string;
-    price: number;
     description: string;
+    price: number;
+    buying_price: number;
+    quantity: number;
 
 }
 
