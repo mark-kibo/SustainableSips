@@ -1,3 +1,4 @@
+
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
@@ -15,19 +16,20 @@ export const authOptions = {
             authorize: async (credentials) => {
                 console.log(credentials)
                 // Fetch user from your API and check credentials
-                const user = await fetch('https://varumar.pythonanywhere.com/auth/login', {
+                const response = await fetch('https://varumar.pythonanywhere.com/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(credentials),
                 })
-                console.log(user)
+                
 
-                if (user.status === 200
-                ) {
+                if (response.status === 200) {
+                    // Parse the user data from the response
+                    const userData = await response.json();
                     // Return user information to create a session
-                    return user
+                    return { user: userData }
                 } else {
                     // If no user was returned, display an error message
                     return null
@@ -37,11 +39,11 @@ export const authOptions = {
     ],
     callbacks: {
         jwt: async ({ token, user }) => {
-            if (user) token = { user: token }
+            if (user) token.user= user
             return token;
         },
         session: async ({ session, token }) => {
-            session = token
+            session.username = token.username
             return session;
         },
     },
