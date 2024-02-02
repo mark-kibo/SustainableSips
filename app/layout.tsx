@@ -8,6 +8,8 @@ import { CartProvider } from 'react-use-cart'
 import TansTackQueryProvider from './TansTackQueryProvider'
 import { SessionProvider } from 'next-auth/react'
 import NextAuthProvider from './NextAuthProvider'
+import NextTopLoader from 'nextjs-toploader';
+import MyApp from './app';
 
 
 
@@ -31,6 +33,7 @@ export default function RootLayout({
             <EditModalContextProvider>
               <TansTackQueryProvider>
               <NextAuthProvider>
+              <NextTopLoader />
 
                 {children}
                 </NextAuthProvider>

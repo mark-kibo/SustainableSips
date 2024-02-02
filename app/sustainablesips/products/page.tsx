@@ -7,6 +7,7 @@ import EditProductModal from '@/components/products/EditProductModal'
 import { Sale } from '../sales/columns'
 import axios from 'axios'
 import { AirplayIcon, Briefcase, BriefcaseIcon } from 'lucide-react'
+import MyApp from '../layout';
 
 export const dynamic="force-dynamic"
 
@@ -31,6 +32,7 @@ const page = async() => {
   const summary = await getSummary() || [];
   console.log(summary)
   return (
+    <MyApp>
     <div className='mt-[80px] relative dark:bg-black'>
       <div className='mt-4 '>
         <h2 className='leading-4 font-semibold mb-6 mr-2 ml-8 text-3xl'> Products</h2>
@@ -84,6 +86,7 @@ const page = async() => {
 
       </div>
     </div>
+    </MyApp>
   )
 }
 

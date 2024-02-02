@@ -10,7 +10,7 @@ const AddUserModal = () => {
     const { onOpen, onOpenChange, onClose, isOpen } = useDisclosure()
     return (
         <>
-            <button onClick={onOpen} className='px-4 py-2 flex justify-between items-center gap-2 bg-primary-200 rounded-md shadow-md mb-2  text-white'><FaPlus /> add user</button>
+            <button onClick={onOpen} className='px-4 py-2 flex justify-between items-center gap-2 bg-[orange] rounded-md shadow-md mb-2  text-white'> Add user</button>
             <Modal
                 backdrop="opaque"
                 isOpen={isOpen}

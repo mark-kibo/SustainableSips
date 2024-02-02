@@ -107,7 +107,7 @@ const Login: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="w-full px-4 py-3 mb-4 md:mb-0 font-bold text-white bg-[#e69b04] rounded-md hover:bg-[rgba(255,171,64,0.9)] focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 disabled:bg-gray-700 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 mb-4 md:mb-0 font-bold text-white bg-[orange] rounded-md hover:bg-[rgba(255,171,64,0.9)] focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 disabled:bg-gray-700 disabled:cursor-not-allowed"
               disabled={mutation.isPending ? true : false}
             >
               {mutation.isPending ? 'loading ...' : "Sign in"}

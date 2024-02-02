@@ -11,6 +11,7 @@ import EditUserModal from '@/components/users/EditUserModal'
 import AddUserModal from '@/components/users/AddUserModal'
 import next from 'next'
 import { userrcolumns } from './columns'
+import MyApp from '../layout';
 
 
 
@@ -37,6 +38,7 @@ const page = async () => {
   const users = await getUsers() || []
   console.log(users)
   return (
+    <MyApp>
     <div className='mt-[80px]  dark:bg-black'>
       <div className='mt-2'>
         <h2 className='leading-4 font-semibold mb-4 mr-2 ml-8 text-3xl'>User Management</h2>
@@ -56,6 +58,7 @@ const page = async () => {
 
       </div>
     </div>
+    </MyApp>
   )
 }
 

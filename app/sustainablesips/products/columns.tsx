@@ -1,21 +1,5 @@
 "use client"
-
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/shad/ui/dropdown-menu";
 import { GridColDef } from "@mui/x-data-grid";
-import { ColumnDef } from "@tanstack/react-table";
-
-import { MoreHorizontal, ArrowUpDown } from "lucide-react";
-
-import {
-    CaretSortIcon,
-    ChevronDownIcon,
-    DotsHorizontalIcon,
-} from "@radix-ui/react-icons"
-import { Button } from "@nextui-org/react";
-import { useContext } from "react";
-import { EditModalContext } from "@/context/ModalContext";
-
-
 
 
 export type product = {
@@ -32,9 +16,9 @@ export type product = {
 
 
 export const productcolumns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 80, type: 'number' },
+    { field: 'id', headerName: 'ID', width: 80, type: 'number',headerClassName: 'font-bold text-lg' },
     
-    { field: 'name', headerName: 'Product name', width: 150, type: 'string' },
+    { field: 'name', headerName: 'Product name', width: 150, type: 'string',headerClassName: 'font-bold text-lg' },
     // { field: 'buying_price', headerName: 'Amount', width: 150, type: 'number' },
     { field: 'price', headerName: 'Unit price', width: 150, type: 'number' },
     {
@@ -46,10 +30,11 @@ export const productcolumns: GridColDef[] = [
                 return <p className="bg-error-400 px-3 py-1 rounded-full mb-1">out of stock</p>
 
             return <p className="bg-success-400 px-3 py-1 rounded-full mb-1">{params.row.quantity}</p>
-        }
+        },
+        headerClassName: 'font-bold text-2xl'
     },
 
-    { field: 'description', headerName: 'Description', type: 'string', width: 350 },
+    { field: 'description', headerName: 'Description', type: 'string', width: 250 },
 
     {
         field: 'profit', headerName: 'Profit', width: 150, type: 'number',
