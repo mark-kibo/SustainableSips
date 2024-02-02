@@ -27,9 +27,11 @@ export const authOptions = {
 
                 if (response.status === 200) {
                     // Parse the user data from the response
-                    const userData = await response.json();
-                    // Return user information to create a session
-                    return { user: userData }
+                   
+                  
+                        const { token, role_id } = await response.json();
+                        return { token, role_id };
+                  
                 } else {
                     // If no user was returned, display an error message
                     return null
@@ -39,11 +41,15 @@ export const authOptions = {
     ],
     callbacks: {
         jwt: async ({ token, user }) => {
-            if (user) token.user= user
+            if (user) {
+                token.userToken = user.token; // Assuming your user object has a 'token' property
+                token.roleId = user.role_id; // Assuming your user object has a 'role_id' property
+            }
             return token;
+
         },
         session: async ({ session, token }) => {
-            session.username = token.username
+            session.user = token
             return session;
         },
     },

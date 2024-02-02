@@ -21,11 +21,11 @@ body{
   
   /* Chrome, Edge and Safari */
   *::-webkit-scrollbar {
-    height: 6%;
-    width: 6px;
+    height: 4%;
+    width: 4px;
   }
   *::-webkit-scrollbar-track {
-    border-radius: 3px;
+    border-radius: 2px;
     background-color: #DFE9EB;
   }
   
@@ -38,7 +38,7 @@ body{
   }
   
   *::-webkit-scrollbar-thumb {
-    border-radius: 3px;
+    border-radius: 2px;
     background-color: orange;
   }
   

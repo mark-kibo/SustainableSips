@@ -21,8 +21,9 @@ const layout = ({ children }: { children: ReactNode }) => {
     <div className='w-full relative grid max-h-screen grid-rows-header  h-screen'>
       <SideNavContextProvider>
         <HandleNavNoSSR />
-        <div className="flex flex-col flex-1 bg-white dark:bg-black pb-10">
+        <div className=" flex flex-col flex-1 bg-white dark:bg-black pb-10">
           <SideBar />
+
           {children}
         </div>
       </SideNavContextProvider>

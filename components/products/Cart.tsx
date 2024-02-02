@@ -5,11 +5,14 @@ import "./cart.css"
 import CartItem from './CartItem'
 import { useMutation } from '@tanstack/react-query'
 import { makeSale } from './ProductRequests'
+import { useSession } from 'next-auth/react'
 
 const Cart = () => {
     const { isEmpty, totalUniqueItems, totalItems, emptyCart, items, updateItemQuantity, cartTotal, removeItem } = useCart()
 
     console.log(totalItems, totalUniqueItems, cartTotal, items)
+    const {data:session} = useSession()
+    console.log(session?.user)
 
     const mutation = useMutation({
         mutationFn:async(sale:{ amount: number, id: string, quantity: number })=>{
