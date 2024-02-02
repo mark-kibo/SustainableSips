@@ -9,11 +9,8 @@ import TansTackQueryProvider from './TansTackQueryProvider'
 import { SessionProvider } from 'next-auth/react'
 import NextAuthProvider from './NextAuthProvider'
 import NextTopLoader from 'nextjs-toploader';
-<<<<<<< HEAD
-import MyApp from './app';
 
-=======
->>>>>>> d00de4a02d299026156dd05d875b571a5119687d
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -35,10 +32,6 @@ export default function RootLayout({
           <NextProvider>
             <EditModalContextProvider>
               <TansTackQueryProvider>
-<<<<<<< HEAD
-              <NextAuthProvider>
-              <NextTopLoader />
-=======
                 <NextAuthProvider>
                   <NextTopLoader
                     color="#ffaf00"
@@ -55,7 +48,7 @@ export default function RootLayout({
                     zIndex={1600}
                     showAtBottom={false}
                   />
->>>>>>> d00de4a02d299026156dd05d875b571a5119687d
+              <NextTopLoader />
 
                   {children}
                 </NextAuthProvider>

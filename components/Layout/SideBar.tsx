@@ -14,10 +14,17 @@ import { TypeAnimation } from 'react-type-animation';
 import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import { signOut } from 'next-auth/react'
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { jwtDecode } from 'jwt-decode';
 
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
+
+
+// Define a User interface
+interface User extends Session {
+    userToken?: string;
+  }
 const menu: any = [
     {
         title: "dashboard",
@@ -41,25 +48,28 @@ const menu: any = [
     },
 ]
 
-// Extend the 'Session' type to include 'username' in 'user'
-interface ExtendedSession extends Session {
-    user: {
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-      username?: string | null; 
-    };
-  }
+
 
 
 
 
 export default function SideBar() {
-   
-    const { data: session } = useSession() as { data: ExtendedSession | null };
-    console.log(session)
-    console.log('hi')
+    // const { jwtDecode } = require('jwt-decode');
+    const { data: session } = useSession();
+    const [username, setUsername] = React.useState(""); 
 
+
+    if(session){
+        console.log(jwtDecode(session?.user?.userToken))
+    }
+
+    let sub = "";
+  if (session) {
+    const decodedToken = jwtDecode(session?.user?.userToken);
+    sub = decodedToken.sub;
+  }
+
+   
 
     const { open, dispatch } = React.useContext(SideNavContext)
     const active = React.useRef("inactive")
@@ -156,7 +166,8 @@ export default function SideBar() {
 
                             >
                                 <div className="leading-4">
-    <h4 className="font-semibold">{session?.user?.username || 'Anonymous'}</h4>
+                                <h4 className="font-semibold"> {sub || 'Anonymous'}</h4>
+
 </div>
 
                             </div>
