@@ -17,18 +17,9 @@ const NavBar = () => {
     const { totalUniqueItems } = useCart()
     return (
 
-        <div className='w-full shadow-sm flex-1 sm:text-sm fixed bg-transparent bg-opacity-1 z-10 backdrop-blur-sm' style={
-            {
-                background: 'rgba(255, 255, 255, 0.6)',
-                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-                backdropFilter: 'blur(18px)',
-                WebkitBackdropFilter: 'blur(13px)',
-                borderRadius: '10px',
-                border: '1px solid rgba(255, 255, 255, 0.18)'
-            }
-        }>
+        <div className='w-full h-auto shadow-sm flex-1 sm:text-sm fixed bg-transparent bg-opacity-1 z-10 backdrop-blur-sm'>
 
-            <nav className="flex items-center justify-between flex-wrap dark:bg-black p-4">
+            <nav className="flex items-center justify-between flex-wrap dark:bg-black p-4 max-h-30">
                 <div className='flex md:flex-row items-center justify-between gap-2'>
                     <div className='flex hover:cursor-pointer hover:scale-105 hover:shadow-md hover:rounded-md py-2 px-1 transition ease-in-out duration-75 hover:bg-gray-200 '>
                         <FaBars size={20} className='hover:scale-90' onClick={() => {
@@ -106,14 +97,14 @@ const NavBar = () => {
                                 />
                             </Tooltip>
                         </DropdownMenuTrigger>
-                        {/* <DropdownMenuContent className="w-40 p-2 z-10 mr-4">
+                        <DropdownMenuContent className="w-40 p-2 z-10 mr-4">
                             <DropdownMenuLabel className='items-center dark:text-black'>My Account</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300'>Profile</DropdownMenuItem>
+                            {/* <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300'>Profile</DropdownMenuItem> */}
                             <DropdownMenuItem className='hover:cursor-pointer px-2 hover:border-none hover:bg-gray-200 dark:text-black dark:hover:bg-gray-300' onClick={async()=>{
                                 await signOut()
                             }}>Logout</DropdownMenuItem>
-                        </DropdownMenuContent> */}
+                        </DropdownMenuContent>
                     </DropdownMenu>
 
 

@@ -125,7 +125,7 @@ export default function SideBar() {
                                 <>
                                     {menu.map((menuItem: any) => (
                                         <Link href={`${menuItem.url}`} key={menuItem.title} onClick={() => dispatch({ type: "CLOSE" })}>
-                                            <div className={`w-3/4 flex items-center ml-6 gap-2 pl-4 py-2 mb-4 transition-all duration-400 ease-in transform hover:w-[180px]  hover:border-b-4  hover:border-b-orange-400 hover:cursor-pointer`}>
+                                            <div className={`w-3/4 flex items-center ml-6 gap-2 pl-4 py-2 mb-4 transition-all duration-400 ease-in transform hover:w-[180px]  hover:border-b-2  hover:border-b-orange-400 hover:cursor-pointer`}>
                                                 {menuItem.icon}
                                                 <p className='text-gray-500 dark:text-white capitalize font-medium'>{menuItem.title}</p>
                                             </div>
