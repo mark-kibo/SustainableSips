@@ -12,7 +12,7 @@ const Cart = () => {
 
     console.log(totalItems, totalUniqueItems, cartTotal, items)
     const {data:session} = useSession()
-    console.log(session)
+    console.log(session?.user)
 
     const mutation = useMutation({
         mutationFn:async(sale:{ amount: number, id: string, quantity: number })=>{

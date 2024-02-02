@@ -25,7 +25,7 @@ const EditUser = () => {
   return (
     <div>
       <Formik
-        initialValues={{ username: id.username, password: '', role: id.role_id }}
+        initialValues={{ username: id.username, password: ''}}
         validationSchema={userSchema}
         onSubmit={async(values, { setSubmitting }) => {
         
