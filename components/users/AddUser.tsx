@@ -27,7 +27,7 @@ type Product = InferType<typeof userSchema>;
        initialValues={{ username: '', password: '' , role:''}}
        validationSchema={userSchema}
        onSubmit={async(values, { setSubmitting }) => {
-        
+        console.log(values)
          const res= await postUser(values)
        }}
      >
