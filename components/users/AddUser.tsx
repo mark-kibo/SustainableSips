@@ -24,7 +24,7 @@ type Product = InferType<typeof userSchema>;
   return (
     <div>
      <Formik
-       initialValues={{ username: '', password: '' , role:''}}
+       initialValues={{ username: '', password: '' , role_id:''}}
        validationSchema={userSchema}
        onSubmit={async(values, { setSubmitting }) => {
         console.log(values)
