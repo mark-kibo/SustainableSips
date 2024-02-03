@@ -59,15 +59,15 @@ export default function SideBar() {
     const [username, setUsername] = React.useState(""); 
 
 
-    if(session){
-        console.log(jwtDecode(session?.user?.userToken))
-    }
+    // if(session){
+    //     console.log(jwtDecode(session?.user?.userToken))
+    // }
 
-    let sub = "";
-  if (session) {
-    const decodedToken = jwtDecode(session?.user?.userToken);
-    sub = decodedToken.sub;
-  }
+  //   let sub = "";
+  // if (session) {
+  //   const decodedToken = jwtDecode(session?.user?.userToken);
+  //   sub = decodedToken.sub;
+  // }
 
    
 
@@ -166,7 +166,7 @@ export default function SideBar() {
 
                             >
                                 <div className="leading-4">
-                                <h4 className="font-semibold"> {sub || 'Anonymous'}</h4>
+                                <h4 className="font-semibold"> {'Anonymous'}</h4>
 
 </div>
 
