@@ -29,8 +29,13 @@ export const authOptions = {
                     // Parse the user data from the response
                    
                   
-                        const { token, role_id } = await response.json();
-                        return { token, role_id };
+                        const user = await response.json();
+                        console.log(user)
+                        if (user && user.token) {
+                            return { ...user, token: user.token };
+                        } else {
+                            throw new Error('Invalid response from server');
+                        }
                   
                 } else {
                     // If no user was returned, display an error message
@@ -43,15 +48,19 @@ export const authOptions = {
         jwt: async ({ token, user }) => {
             if (user) {
                 token.userToken = user.token; // Assuming your user object has a 'token' property
-                token.roleId = user.role_id; // Assuming your user object has a 'role_id' property
             }
             return token;
-
         },
         session: async ({ session, token }) => {
-            session.user = token
+            if (token.userToken) {
+                session.user = {
+                    ...session.user,
+                    userToken: token.userToken,
+                };
+            }
             return session;
         },
+    
     },
     secret: process.env.NEXTAUTH_SECRET,
 

@@ -11,6 +11,8 @@ import NextAuthProvider from './NextAuthProvider'
 import NextTopLoader from 'nextjs-toploader';
 
 
+
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -46,6 +48,7 @@ export default function RootLayout({
                     zIndex={1600}
                     showAtBottom={false}
                   />
+              <NextTopLoader />
 
                   {children}
                 </NextAuthProvider>

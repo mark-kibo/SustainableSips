@@ -75,7 +75,7 @@ export default function DataTable({ data, columns }: { data: any, columns: GridC
     React.useState<GridColumnVisibilityModel>({});
 
   const actions = [{
-    field: 'actions', headerName: 'actions', type: 'string', width: 150,
+    field: 'actions', headerName: 'Actions', type: 'string', width: 150,
     renderCell: (params: any) => {
       return (
         
@@ -93,7 +93,10 @@ export default function DataTable({ data, columns }: { data: any, columns: GridC
       <div id="sales-table">
         <DataGrid
         
-          columns={[...columns, ...actions]}
+        columns={[...columns.map(col => ({
+          ...col,
+          headerClassName: 'font-bold text-black-1000 capitalize'
+        })), ...actions]}
           rows={data}
         disableColumnFilter
         // disableColumnMenu

@@ -9,7 +9,7 @@ const AddProduct = () => {
     const { onOpen, onOpenChange, onClose, isOpen } = useDisclosure()
     return (
         <>
-            <button onClick={onOpen} className='px-4 py-2 flex justify-between items-center gap-2 bg-primary-200 rounded-md shadow-md mb-2  text-white'><FaPlus /> add product</button>
+            <button onClick={onOpen} className='"w-full px-4 py-3 mb-4 md:mb-0 font-bold text-white bg-[orange] rounded-md hover:bg-[rgba(255,171,64,0.9)] focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 disabled:bg-gray-700'> Add product</button>
             <Modal
                 backdrop="opaque"
                 isOpen={isOpen}

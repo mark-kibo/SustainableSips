@@ -40,20 +40,11 @@ const NavBar = () => {
                             speed={50}
                             style={{}}
                             repeat={Infinity}
-
                         />
-
                     </h2>
-
-
                 </div>
                 <div className='flex justify-between mr-1 pr-2'>
-                    {/* <div className='p-2 hidden flex-1 md:flex justify-between items-center shadow-md rounded-md gap-1'>
-
-                        <input name="search" id="" placeholder="Search..." className='w-full px-2 bg-white dark:text-black text-sm outline-none rounded-sm' />
-                        <SearchIcon size={20} className='hover:cursor-pointer' />
-
-                    </div> */}
+                
                     <Link href={"Cart"}>
                         <button className='mx-2 rounded-full relative shadow-md  px-3 py-2'>
                             <FaCartPlus size={15} className="mt-2" />
@@ -61,28 +52,7 @@ const NavBar = () => {
                             <span className="absolute top-0 right-0 -translate-x-1/2 -translate-y-1/2 bg-primary-200 rounded-full px-2 py-1 text-xs font-bold text-center text-white">{totalUniqueItems}</span>
                         </button>
                     </Link>
-                    {/* <button className="w-16 h-16 rounded-full shadow-md bg-gray-700 flex items-center justify-center relative cursor-pointer hover:scale-110 transition-all duration-300">
-                        <svg viewBox="0 0 512 512" height="16" fill="white" class="transition-all duration-300">
-                        </svg>
-                        
-                    </button> */}
-
-
                     <Theme />
-                    {/* <Tooltip title="profile">
-                        <Image
-                            src="https://img.freepik.com/free-photo/fashion-little-boy_71767-95.jpg?size=626&ext=jpg&ga=GA1.1.639452111.1704197644&semt=sph"
-                            alt="Logo"
-                            width={30}
-                            height={30}
-
-                            objectFit='contain'
-                            className='rounded-md shadow-md cursor-pointer'
-                        />
-                    </Tooltip> */}
-
-
-
                     <DropdownMenu  >
                         <DropdownMenuTrigger className='rounded-full px-1 py-1 shadow-md'>
                             <Tooltip title="profile">
@@ -91,8 +61,6 @@ const NavBar = () => {
                                     alt="Logo"
                                     width={30}
                                     height={30}
-
-                                   
                                     className='rounded-full block'
                                 />
                             </Tooltip>
@@ -106,9 +74,6 @@ const NavBar = () => {
                             }}>Logout</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
-
-
-
                 </div>
             </nav>
 
