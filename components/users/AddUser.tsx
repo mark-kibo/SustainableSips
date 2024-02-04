@@ -33,10 +33,10 @@ type Product = InferType<typeof userSchema>;
   return (
     <div>
      <Formik
-       initialValues={{ username: '', password: '' , role:''}}
+       initialValues={{ username: '', password: '' , role_id:''}}
        validationSchema={userSchema}
        onSubmit={async(values, { setSubmitting }) => {
-        
+        console.log(values)
          const res= await postUser(values)
        }}
      >
@@ -47,9 +47,9 @@ type Product = InferType<typeof userSchema>;
           
            <Field type="password" name="password" placeholder="....." className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" />
            <ErrorMessage name="password" component="div" />
-           <select name="role" id="" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full">
-            <option value="admin">Admin</option>
-            <option value="clerk">clerk</option>
+           <select name="role_id" id="" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full">
+            <option value="1">Admin</option>
+            <option value="2">clerk</option>
            </select>
           
           
