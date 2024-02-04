@@ -56,16 +56,18 @@ const menu: any = [
 export default function SideBar() {
     // const { jwtDecode } = require('jwt-decode');
     const { data: session } = useSession();
-    const [username, setUsername] = React.useState(""); 
+    console.log('session',session);
+    
 
 
-    if(session){
-        console.log(jwtDecode(session?.user?.userToken))
-    }
+    // if(session){
+    //     console.log(jwtDecode(session?.user?.userToken))
+    // }
 
     let sub = "";
   if (session) {
     const decodedToken = jwtDecode(session?.user?.userToken);
+    console.log('decodedtoken',decodedToken)
     sub = decodedToken.sub;
   }
 
@@ -85,7 +87,7 @@ export default function SideBar() {
                     return;
                 }
 
-                // setState({ ...state, [anchor]: open });
+                
                 dispatch({
                     type: "CLOSE"
                 })

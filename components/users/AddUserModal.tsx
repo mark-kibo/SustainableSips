@@ -5,12 +5,25 @@ import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from '@nex
 import React, { useContext } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import AddUser from './AddUser'
+import { useSession } from 'next-auth/react';
+import { jwtDecode } from 'jwt-decode';
 
 const AddUserModal = () => {
+    const { data: session } = useSession()
+    console.log(session?.user)
+
+
+    let role = "";
+    if (session) {
+        const decodedToken = jwtDecode(session?.user?.userToken);
+        role =decodedToken.role;
+    }
     const { onOpen, onOpenChange, onClose, isOpen } = useDisclosure()
     return (
         <>
-            <button onClick={onOpen} className='px-4 py-2 flex justify-between items-center gap-2 bg-[orange] rounded-md shadow-md mb-2  text-white'> Add user</button>
+        {Number(role) === 1 && (
+    <button onClick={onOpen} className='px-4 py-2 flex justify-between items-center gap-2 bg-[orange] rounded-md shadow-md mb-2  text-white'> Add user</button>
+)}
             <Modal
                 backdrop="opaque"
                 isOpen={isOpen}

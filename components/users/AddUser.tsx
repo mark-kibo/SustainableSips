@@ -6,6 +6,10 @@ import axios from 'axios';
 import { Item } from '@radix-ui/react-dropdown-menu';
 import { useSession } from 'next-auth/react';
 import { postUser } from './DeleteRequest';
+import { jwtDecode } from 'jwt-decode';
+;
+
+
 
 const AddUser = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -13,6 +17,11 @@ const AddUser = () => {
   const { data: session } = useSession()
   console.log(session?.user)
 
+  // let role = "";
+  // if (session) {
+  //   const decodedToken = jwtDecode(session?.user?.userToken);
+  //   role = decodedToken.sub;
+  // }
   let userSchema = object({
     username : string().required("username required"),
     password:string().required("password is required ").min(4, "not less than four characters")
@@ -38,17 +47,21 @@ type Product = InferType<typeof userSchema>;
           
            <Field type="password" name="password" placeholder="....." className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" />
            <ErrorMessage name="password" component="div" />
-           {/* <Field type="text" name="role" placeholder="admin or clerk" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full" /> */}
            <select name="role" id="" className="mt-1 mb-2 p-2 border border-gray-300 rounded-md w-full">
             <option value="admin">Admin</option>
             <option value="clerk">clerk</option>
            </select>
           
-           
-           
-           <button type="submit" disabled={isSubmitting} className='bg-orange-300 mb-4 w-full px-4 py-2  shadow-md rounded-md text-black font-semibold cursor-pointer disabled:bg-gray-400'>
-             {isSubmitting ? "adding ...." : "add user"}
-           </button>
+          
+  <button
+    type="submit"
+    disabled={isSubmitting}
+    className="bg-orange-300 mb-4 w-full px-4 py-2 shadow-md rounded-md text-black font-semibold cursor-pointer disabled:bg-gray-400"
+  >
+    {isSubmitting ? "Adding ...." : "Add User"}
+  </button>
+
+
          </Form>
        )}
      </Formik>
