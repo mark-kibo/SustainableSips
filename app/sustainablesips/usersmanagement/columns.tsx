@@ -22,10 +22,10 @@ import { EditModalContext } from "@/context/ModalContext";
 
 
 export const userrcolumns: GridColDef[] = [
-    {
-        field:"id",
-        headerName:"User Identifier"
-    },
+    // {
+    //     field:"id",
+    //     headerName:"User Identifier"
+    // },
     {
         field:"username",
         headerName:"Username"
