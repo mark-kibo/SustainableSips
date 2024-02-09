@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Layout/SideBar.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Layout/SideBar.jsx", "components/users/AddUserModal.jsx", "components/users/UserDatatable.jsx"],
   "exclude": ["node_modules"]
 }

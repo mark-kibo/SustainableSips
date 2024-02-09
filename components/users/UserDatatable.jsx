@@ -1,30 +1,22 @@
-// import * as React from 'react';
 "use client"
+import React, { useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import {
     DataGrid,
     GridToolbar,
     GridFilterModel,
-    GridColumnVisibilityModel,
     GridColDef,
 } from '@mui/x-data-grid';
-
-import React, { useContext } from 'react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/shad/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from "@/shad/ui/dropdown-menu";
 import { Button } from '@nextui-org/react';
-import {
-    CaretSortIcon,
-    ChevronDownIcon,
-    DotsHorizontalIcon,
-} from "@radix-ui/react-icons"
-import { EditModalContext } from '@/context/ModalContext';
 import { FaDownload, FaEdit, FaTrash } from 'react-icons/fa';
+import { EditModalContext } from '@/context/ModalContext';
 import { DeleteRequest } from './DeleteRequest';
 import { useSession } from 'next-auth/react';
 import { jwtDecode } from 'jwt-decode';
 
-export default function UserDataTable({ data, columns }: { data: any, columns: GridColDef[] }) {
-    const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
+export default function UserDataTable({ data, columns }) {
+    const [filterModel, setFilterModel] = useState({
         items: [],
         quickFilterExcludeHiddenColumns: true,
     });
@@ -39,33 +31,31 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
 
     const { onOpen, setId } = useContext(EditModalContext);
 
-    const actions: GridColDef[] = [{
+    const actions = [{
         field: 'actions',
         headerName: 'Actions',
         type: 'string',
         width: 200,
-        renderCell: (params: { row: any }) => {
+        renderCell: (params) => {
             return (
                 <div className='flex items-start ml-2 justify-between gap-4 text-black'>
                     {Number(role) === 1 && (
-    <>
-        <p className='shadow-sm rounded-sm text-primary-800 bg-white p-2 hover:bg-orange-300 cursor-pointer'
-            onClick={() => {
-                onOpen();
-                setId(params.row);
-            }}
-        ><FaEdit /></p>
-        <p className='shadow-sm rounded-sm text-error-600 bg-white p-2 hover:bg-orange-300 cursor-pointer' onClick={() => {
-            DeleteRequest(params.row.id);
-        }}><FaTrash /></p>
-    </>
-)}
-
+                        <>
+                            <p className='shadow-sm rounded-sm text-primary-800 bg-white p-2 hover:bg-orange-300 cursor-pointer'
+                                onClick={() => {
+                                    onOpen();
+                                    setId(params.row);
+                                }}
+                            ><FaEdit /></p>
+                            <p className='shadow-sm rounded-sm text-error-600 bg-white p-2 hover:bg-orange-300 cursor-pointer' onClick={() => {
+                                DeleteRequest(params.row.id);
+                            }}><FaTrash /></p>
+                        </>
+                    )}
                 </div>
             );
         },
     }];
-
 
     return (
         <div className='w-full'>
@@ -78,13 +68,11 @@ export default function UserDataTable({ data, columns }: { data: any, columns: G
                     rows={data}
                     disableColumnFilter
                     disableDensitySelector
-                    slots={{ toolbar: GridToolbar }}
+                    components={{ Toolbar: GridToolbar }}
                     filterModel={filterModel}
                     onFilterModelChange={(newModel) => setFilterModel(newModel)}
-                    slotProps={{ toolbar: { showQuickFilter: true } }}
-                    initialState={{
-                        pagination: { paginationModel: { pageSize: 5 } },
-                    }}
+                    componentsProps={{ toolbar: { showQuickFilter: true } }}
+                    pageSize={5}
                     pageSizeOptions={[5, 10, 25]}
                     sx={{
                         border: "none",
