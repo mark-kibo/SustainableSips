@@ -10,6 +10,7 @@ import { SessionProvider } from "next-auth/react";
 import NextAuthProvider from "./NextAuthProvider";
 import NextTopLoader from "nextjs-toploader";
 import CartContextProvider from "@/context/CartContext";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
