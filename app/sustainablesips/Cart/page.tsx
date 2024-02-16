@@ -1,8 +1,9 @@
 "use client"
 import dynamic from 'next/dynamic'
 import React, { Suspense } from 'react'
+import Cart from '@/components/products/Cart'
 
-const NoSSR = dynamic(() => import('@/components/products/Cart'), { ssr: false })
+// const NoSSR = dynamic(() => import('@/components/products/Cart'), { ssr: false })
 
 
 const page = () => {
@@ -12,7 +13,7 @@ const page = () => {
         <h2 className="text-4xl font-bold">Cart checkout</h2>
       </div>
       <div className='mt-2'>
-        <NoSSR/>
+        <Cart/>
 
       </div>
 
