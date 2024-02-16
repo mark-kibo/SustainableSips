@@ -25,9 +25,9 @@ const SideNavContextProvider = ({children}:{children:ReactNode}) => {
     }
   return (
     <SideNavContext.Provider value={context}>
-        <CartProvider>
+        
         {children}
-        </CartProvider>
+       
     </SideNavContext.Provider>
   )
 }

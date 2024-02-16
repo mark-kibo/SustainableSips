@@ -1,29 +1,27 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import ThemeProviders from './ThemeProviders'
-import NextProvider from './nextuiProviders'
-import EditModalContextProvider from '@/context/ModalContext'
-import { CartProvider } from 'react-use-cart'
-import TansTackQueryProvider from './TansTackQueryProvider'
-import { SessionProvider } from 'next-auth/react'
-import NextAuthProvider from './NextAuthProvider'
-import NextTopLoader from 'nextjs-toploader';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import ThemeProviders from "./ThemeProviders";
+import NextProvider from "./nextuiProviders";
+import EditModalContextProvider from "@/context/ModalContext";
+import { CartProvider } from "react-use-cart";
+import TansTackQueryProvider from "./TansTackQueryProvider";
+import { SessionProvider } from "next-auth/react";
+import NextAuthProvider from "./NextAuthProvider";
+import NextTopLoader from "nextjs-toploader";
+import CartContextProvider from "@/context/CartContext";
 
-
-
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Oasis',
-  description: 'oasis',
-}
+  title: "Oasis",
+  description: "oasis",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -48,16 +46,14 @@ export default function RootLayout({
                     zIndex={1600}
                     showAtBottom={false}
                   />
-              <NextTopLoader />
-
+                  <NextTopLoader />
                   {children}
                 </NextAuthProvider>
               </TansTackQueryProvider>
-
             </EditModalContextProvider>
           </NextProvider>
         </ThemeProviders>
       </body>
     </html>
-  )
+  );
 }

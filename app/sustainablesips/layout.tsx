@@ -8,6 +8,7 @@ import SideBar from '@/components/Layout/SideBar'
 import SideNavContextProvider from '@/context/SideNavContext'
 import dynamic from 'next/dynamic'
 import HandleNavNoSSR from '@/components/Layout/HandleNavNoSSR'
+import CartContextProvider from '@/context/CartContext'
 
 export const metadata: Metadata = {
   title: 'oasis - dashboard',
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 const layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className='w-full relative grid max-h-screen grid-rows-header  h-screen'>
+     <CartContextProvider>
       <SideNavContextProvider>
         <HandleNavNoSSR />
         <div className=" flex flex-col flex-1 bg-white dark:bg-black pb-10">
@@ -27,6 +29,7 @@ const layout = ({ children }: { children: ReactNode }) => {
           {children}
         </div>
       </SideNavContextProvider>
+      </CartContextProvider>
       <Footer />
     </div>
 
